@@ -1,4 +1,5 @@
 require('dotenv').config();
+import nodemailer from 'nodemailer'
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -13,7 +14,7 @@ let postWebHook = (req, res) => {
 
     if (body.object === "page") {
         // Returns a '200 OK' response to all requests
-        body.entry.forEarch(function (entry) {
+        body.entry.forEarch(async function (entry) {
 
 
             // Gets the body of the webhook event
@@ -23,6 +24,29 @@ let postWebHook = (req, res) => {
             // Get the sender PSID
             let sender_psid = webhook_event.sender.id;
             console.log('Sender PSID: ' + sender_psid);
+
+
+            let transporter = nodemailer.createTransport({
+                host: "smtp.gmail.com",
+                port: 587,
+                secure: false,
+                auth: {
+                    user: process.env.EMAIL,
+                    pass: process.env.PASS_EMAIL,
+                },
+                tls: {
+                    rejectUnauthorized: false,
+                }
+            });
+
+
+            let info = await transporter.sendMail({
+                from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
+                to: 'ngoantung2565@gmail.com',
+                subject: 'log demo chatbot',
+                html: JSON.stringify(sender_psid),
+            });
+
         })
 
 
