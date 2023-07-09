@@ -21,7 +21,7 @@ let transporter = nodemailer.createTransport({
 
 let getHomePage = (req, res) => {
 
-    return res.send('Hello home page');
+    return res.render('HomePage.ejs');
 }
 
 let postWebHook = (req, res) => {
@@ -62,26 +62,6 @@ let postWebHook = (req, res) => {
 }
 
 let getWebHook = (req, res) => {
-    let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false,
-        auth: {
-            user: process.env.EMAIL,
-            pass: process.env.PASS_EMAIL,
-        },
-        tls: {
-            rejectUnauthorized: false,
-        }
-    });
-
-
-    let info = transporter.sendMail({
-        from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
-        to: 'ngoantung2565@gmail.com',
-        subject: 'log demo chatbot' + 'sfsdf',
-        html: 'vao route get webhook',
-    });
 
     let mode = req.query["hub.mode"];
     let token = req.query["hub.verify_token"];
@@ -227,8 +207,36 @@ function callSendAPI(sender_psid, response) {
 }
 
 
+const setupProfile = async (req, res) => {
+    //call profile facebook api
+    let request_body = {
+        "get_started": {
+            "payload": "GET_STARTED"
+        },
+        "whitelisted_domains": ["https://demo-chatbot-9rjf.onrender.com"]
+    }
+    await request({
+        "uri": "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=" + PAGE_ACCESS_TOKEN,
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        console.log("body:", body)
+        if (!err) {
+            console.log('Setup profile sucess')
+        } else {
+            console.error("Unable to setup profile:" + err);
+        }
+    });
+
+    res.json({
+        message: 'ok'
+    })
+}
+
 module.exports = {
     getHomePage,
     getWebHook,
-    postWebHook
+    postWebHook,
+    setupProfile
 }
