@@ -50,23 +50,6 @@ let postWebHook = (req, res) => {
                 handlePostback(sender_psid, webhook_event.postback);
             }
 
-
-
-
-
-
-
-            //send email log
-
-
-
-            // let info = transporter.sendMail({
-            //     from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
-            //     to: 'ngoantung2565@gmail.com',
-            //     subject: 'log demo chatbot' + webhook_event.message.text,
-            //     html: 'sender_psid ' + sender_psid,
-            // });
-
         })
 
 
@@ -139,23 +122,59 @@ function handleMessage(sender_psid, received_message) {
                 "type": "template",
                 "payload": {
                     "template_type": "generic",
-                    "elements": [{
-                        "title": "Đây có phải bức ảnh bạn đã gửi không?",
-                        "subtitle": "Nhấn nút ở dưới để trả lời",
-                        "image_url": attachment_url,
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Đúng!",
-                                "payload": "yes",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Không đúng!",
-                                "payload": "no",
-                            }
-                        ],
-                    }]
+                    "elements": [
+                        {
+                            "title": "Đây có phải bức ảnh bạn đã gửi không?",
+                            "subtitle": "Nhấn nút ở dưới để trả lời",
+                            "image_url": attachment_url,
+                            "buttons": [
+                                {
+                                    "type": "postback",
+                                    "title": "Đúng!",
+                                    "payload": "yes",
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "Không đúng!",
+                                    "payload": "no",
+                                }
+                            ],
+                        },
+                        {
+                            "title": "Đây có phải bức ảnh bạn đã gửi không?",
+                            "subtitle": "Nhấn nút ở dưới để trả lời",
+                            "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
+                            "buttons": [
+                                {
+                                    "type": "postback",
+                                    "title": "Đúng!",
+                                    "payload": "yes",
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "Không đúng!",
+                                    "payload": "no",
+                                }
+                            ],
+                        },
+                        {
+                            "title": "Đây có phải bức ảnh bạn đã gửi không?",
+                            "subtitle": "Nhấn nút ở dưới để trả lời",
+                            "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
+                            "buttons": [
+                                {
+                                    "type": "postback",
+                                    "title": "Đúng!",
+                                    "payload": "yes",
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "Không đúng!",
+                                    "payload": "no",
+                                }
+                            ],
+                        },
+                    ]
                 }
             }
         }
