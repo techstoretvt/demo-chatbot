@@ -60,12 +60,12 @@ let postWebHook = (req, res) => {
 
 
 
-            let info = transporter.sendMail({
-                from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
-                to: 'ngoantung2565@gmail.com',
-                subject: 'log demo chatbot' + webhook_event.message.text,
-                html: 'sender_psid ' + sender_psid,
-            });
+            // let info = transporter.sendMail({
+            //     from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
+            //     to: 'ngoantung2565@gmail.com',
+            //     subject: 'log demo chatbot' + webhook_event.message.text,
+            //     html: 'sender_psid ' + sender_psid,
+            // });
 
         })
 
@@ -131,6 +131,34 @@ function handleMessage(sender_psid, received_message) {
         response = {
             "text": `You sent the message: "${received_message.text}". Now send me an image!`
         }
+    } else if (received_message.attachments) {
+        // Get the URL of the message attachment
+        let attachment_url = received_message.attachments[0].payload.url;
+        response = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "generic",
+                    "elements": [{
+                        "title": "Đây có phải bức ảnh bạn đã gửi không?",
+                        "subtitle": "Nhấn nút ở dưới để trả lời",
+                        "image_url": attachment_url,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Đúng!",
+                                "payload": "yes",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Không đúng!",
+                                "payload": "no",
+                            }
+                        ],
+                    }]
+                }
+            }
+        }
     }
 
     // Sends the response message
@@ -139,7 +167,19 @@ function handleMessage(sender_psid, received_message) {
 
 // Handles messaging_postbacks events
 function handlePostback(sender_psid, received_postback) {
+    let response;
 
+    // Get the payload for the postback
+    let payload = received_postback.payload;
+
+    // Set the response based on the postback payload
+    if (payload === 'yes') {
+        response = { "text": "Thanks!" }
+    } else if (payload === 'no') {
+        response = { "text": "Oops, try sending another image." }
+    }
+    // Send the message to acknowledge the postback
+    callSendAPI(sender_psid, response);
 }
 
 // Sends response messages via the Send API
@@ -161,12 +201,6 @@ function callSendAPI(sender_psid, response) {
     }, (err, res, body) => {
         if (!err) {
             console.log('message sent!')
-            let info = transporter.sendMail({
-                from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
-                to: 'ngoantung2565@gmail.com',
-                subject: 'Gui thanh cong' + response.text,
-                html: 'Gui thanh cong toi: ' + sender_psid,
-            });
         } else {
             console.error("Unable to send message:" + err);
         }
