@@ -1,13 +1,41 @@
 require('dotenv').config();
 
+const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 let getHomePage = (req, res) => {
     req.body.password
     return res.send('Hello home page');
 }
 
+let postWebHook = (req, res) => {
+    let body = req.body;
+
+    if (body.object === "page") {
+        // Returns a '200 OK' response to all requests
+        body.entry.forEarch(function (entry) {
+
+
+            // Gets the body of the webhook event
+            let webhook_event = entry.messaging[0];
+            console.log(webhook_event);
+
+            // Get the sender PSID
+            let sender_psid = webhook_event.sender.id;
+            console.log('Sender PSID: ' + sender_psid);
+        })
+
+
+        res.status(200).send("EVENT_RECEIVED");
+        // Determine which webhooks were triggered and get sender PSIDs and locale, message content and more.
+    } else {
+        // Return a '404 Not Found' if event is not from a page subscription
+        res.sendStatus(404);
+    }
+}
+
 let getWebHook = (req, res) => {
-    let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
+
 
     let mode = req.query["hub.mode"];
     let token = req.query["hub.verify_token"];
@@ -28,26 +56,22 @@ let getWebHook = (req, res) => {
 
 }
 
-let postWebHook = (req, res) => {
-    let body = req.body;
 
-    if (body.object === "page") {
-        // Returns a '200 OK' response to all requests
-        body.entry.forEarch(function (entry) {
+// Handles messages events
+function handleMessage(sender_psid, received_message) {
 
-
-            let webhook_event = entry.messageing[0];
-            console.log(webhook_event);
-        })
-
-
-        res.status(200).send("EVENT_RECEIVED");
-        // Determine which webhooks were triggered and get sender PSIDs and locale, message content and more.
-    } else {
-        // Return a '404 Not Found' if event is not from a page subscription
-        res.sendStatus(404);
-    }
 }
+
+// Handles messaging_postbacks events
+function handlePostback(sender_psid, received_postback) {
+
+}
+
+// Sends response messages via the Send API
+function callSendAPI(sender_psid, response) {
+
+}
+
 
 module.exports = {
     getHomePage,
