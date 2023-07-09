@@ -53,7 +53,7 @@ let postWebHook = (req, res) => {
 
     if (body.object === "page") {
         // Returns a '200 OK' response to all requests
-        body.entry.forEarch(function (entry) {
+        body.entry.forEach(function (entry) {
 
 
             // Gets the body of the webhook event
@@ -83,7 +83,7 @@ let postWebHook = (req, res) => {
                 from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
                 to: 'ngoantung2565@gmail.com',
                 subject: 'log demo chatbot' + 'sfsdf',
-                html: 'sender_psid' + sender_psid,
+                html: 'sender_psid ' + sender_psid,
             });
 
         })
