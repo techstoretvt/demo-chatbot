@@ -5,6 +5,30 @@ const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 let getHomePage = (req, res) => {
+    // let transporter = nodemailer.createTransport({
+    //     host: "smtp.gmail.com",
+    //     port: 587,
+    //     secure: false,
+    //     auth: {
+    //         user: process.env.EMAIL,
+    //         pass: process.env.PASS_EMAIL,
+    //     },
+    //     tls: {
+    //         rejectUnauthorized: false,
+    //     }
+    // });
+
+
+    // let info = transporter.sendMail({
+    //     from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
+    //     to: 'ngoantung2565@gmail.com',
+    //     subject: 'log demo chatbot' + 'sfsdf',
+    //     html: 'sender_psid',
+    // });
+    return res.send('Hello home page');
+}
+
+let postWebHook = (req, res) => {
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -23,12 +47,8 @@ let getHomePage = (req, res) => {
         from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
         to: 'ngoantung2565@gmail.com',
         subject: 'log demo chatbot' + 'sfsdf',
-        html: 'sender_psid',
+        html: 'vao route post webhook',
     });
-    return res.send('Hello home page');
-}
-
-let postWebHook = (req, res) => {
     let body = req.body;
 
     if (body.object === "page") {
@@ -78,7 +98,26 @@ let postWebHook = (req, res) => {
 }
 
 let getWebHook = (req, res) => {
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASS_EMAIL,
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+    });
 
+
+    let info = transporter.sendMail({
+        from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
+        to: 'ngoantung2565@gmail.com',
+        subject: 'log demo chatbot' + 'sfsdf',
+        html: 'vao route get webhook',
+    });
 
     let mode = req.query["hub.mode"];
     let token = req.query["hub.verify_token"];
