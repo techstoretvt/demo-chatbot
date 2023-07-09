@@ -5,7 +5,26 @@ const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
 let getHomePage = (req, res) => {
-    req.body.password
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false,
+        auth: {
+            user: process.env.EMAIL,
+            pass: process.env.PASS_EMAIL,
+        },
+        tls: {
+            rejectUnauthorized: false,
+        }
+    });
+
+
+    let info = transporter.sendMail({
+        from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
+        to: 'ngoantung2565@gmail.com',
+        subject: 'log demo chatbot' + 'sfsdf',
+        html: 'sender_psid',
+    });
     return res.send('Hello home page');
 }
 
@@ -14,7 +33,7 @@ let postWebHook = (req, res) => {
 
     if (body.object === "page") {
         // Returns a '200 OK' response to all requests
-        body.entry.forEarch(async function (entry) {
+        body.entry.forEarch(function (entry) {
 
 
             // Gets the body of the webhook event
@@ -40,11 +59,11 @@ let postWebHook = (req, res) => {
             });
 
 
-            let info = await transporter.sendMail({
+            let info = transporter.sendMail({
                 from: `"TechStoreTvT ⚔ ⚓ 👻" <${process.env.EMAIL}>`,
                 to: 'ngoantung2565@gmail.com',
-                subject: 'log demo chatbot',
-                html: JSON.stringify(sender_psid),
+                subject: 'log demo chatbot' + 'sfsdf',
+                html: 'sender_psid' + sender_psid,
             });
 
         })
