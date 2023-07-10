@@ -2,7 +2,7 @@ import request from 'request';
 require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
-const IMAGE_GET_STARTED = "https://shorturl.ac/7as92"
+const IMAGE_GET_STARTED = "https://th.bing.com/th/id/R.773d15e33656ad2904165405a5a32317?rik=ofFDzfOn73Vz6w&pid=ImgRaw&r=0"
 
 let callSendAPI = (sender_psid, response) => {
     let now = new Date().getTime();
@@ -81,7 +81,7 @@ let sendGetStartedTemplate = () => {
                     {
                         "title": "Cửa hàng TechStore TvT xin kính chào quý khách",
                         "subtitle": "Dưới đây là các lựa chọn của nhà hàng",
-                        "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
+                        "image_url": IMAGE_GET_STARTED,
                         "buttons": [
                             {
                                 "type": "postback",
@@ -93,11 +93,11 @@ let sendGetStartedTemplate = () => {
                                 "title": "ĐẶT BÀN",
                                 "payload": "RESERVER_TABLE",
                             },
-                            // {
-                            //     "type": "postback",
-                            //     "title": "HƯỚNG DẪN SỬ DỤNG BOT",
-                            //     "payload": "GUIDE_TO_USE",
-                            // }
+                            {
+                                "type": "postback",
+                                "title": "HƯỚNG DẪN SỬ DỤNG BOT",
+                                "payload": "GUIDE_TO_USE",
+                            }
                         ],
                     },
                 ]

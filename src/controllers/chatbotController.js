@@ -126,40 +126,6 @@ function handleMessage(sender_psid, received_message) {
                                 }
                             ],
                         },
-                        {
-                            "title": "Đây có phải bức ảnh bạn đã gửi không?",
-                            "subtitle": "Nhấn nút ở dưới để trả lời",
-                            "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "title": "Đúng!",
-                                    "payload": "yes",
-                                },
-                                {
-                                    "type": "postback",
-                                    "title": "Không đúng!",
-                                    "payload": "no",
-                                }
-                            ],
-                        },
-                        {
-                            "title": "Đây có phải bức ảnh bạn đã gửi không?",
-                            "subtitle": "Nhấn nút ở dưới để trả lời",
-                            "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
-                            "buttons": [
-                                {
-                                    "type": "postback",
-                                    "title": "Đúng!",
-                                    "payload": "yes",
-                                },
-                                {
-                                    "type": "postback",
-                                    "title": "Không đúng!",
-                                    "payload": "no",
-                                }
-                            ],
-                        },
                     ]
                 }
             }
