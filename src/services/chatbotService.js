@@ -6,7 +6,7 @@ const IMAGE_GET_STARTED = "https://shorturl.ac/7as92"
 
 let callSendAPI = (sender_psid, response) => {
     let now = new Date().getTime();
-    console.log('Goi hand send api: ', now);
+    console.log('Goi hand send api: ', now); 1
     return new Promise((resolve, reject) => {
         let request_body = {
             "recipient": {
@@ -17,7 +17,7 @@ let callSendAPI = (sender_psid, response) => {
 
         // Send the HTTP request to the Messenger Platform
         request({
-            "uri": "https://graph.facebook.com/v9.0/me/messages",
+            "uri": "https://graph.facebook.com/v2.6/me/messages",
             "qs": { "access_token": PAGE_ACCESS_TOKEN },
             "method": "POST",
             "json": request_body
@@ -95,40 +95,6 @@ let sendGetStartedTemplate = () => {
                                 "type": "postback",
                                 "title": "HƯỚNG DẪN SỬ DỤNG BOT",
                                 "payload": "GUIDE_TO_USE",
-                            }
-                        ],
-                    },
-                    {
-                        "title": "Đây có phải bức ảnh bạn đã gửi không?",
-                        "subtitle": "Nhấn nút ở dưới để trả lời",
-                        "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Đúng!",
-                                "payload": "yes",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Không đúng!",
-                                "payload": "no",
-                            }
-                        ],
-                    },
-                    {
-                        "title": "Đây có phải bức ảnh bạn đã gửi không?",
-                        "subtitle": "Nhấn nút ở dưới để trả lời",
-                        "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
-                        "buttons": [
-                            {
-                                "type": "postback",
-                                "title": "Đúng!",
-                                "payload": "yes",
-                            },
-                            {
-                                "type": "postback",
-                                "title": "Không đúng!",
-                                "payload": "no",
                             }
                         ],
                     },
