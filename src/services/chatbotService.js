@@ -6,7 +6,9 @@ const IMAGE_GET_STARTED = "https://shorturl.ac/7as92"
 
 let callSendAPI = (sender_psid, response) => {
     let now = new Date().getTime();
-    console.log('Goi hand send api: ', now); 1
+    console.log('Goi hand send api: ', now);
+    console.log('response: ', response);
+
     return new Promise((resolve, reject) => {
         let request_body = {
             "recipient": {
@@ -17,13 +19,13 @@ let callSendAPI = (sender_psid, response) => {
 
         // Send the HTTP request to the Messenger Platform
         request({
-            "uri": "https://graph.facebook.com/v2.6/me/messages",
+            "uri": "https://graph.facebook.com/v9.0/me/messages",
             "qs": { "access_token": PAGE_ACCESS_TOKEN },
             "method": "POST",
             "json": request_body
         }, (err, res, body) => {
             if (!err) {
-                console.log('message sent!')
+                // console.log('message sent!')
                 resolve('done')
             } else {
                 console.error("Unable to send message:" + err);
@@ -59,8 +61,8 @@ let handleGetStarted = (sender_psid) => {
             let response1 = { "text": `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.` }
             let response2 = sendGetStartedTemplate();
 
-            await callSendAPI(sender_psid, response1);
             await callSendAPI(sender_psid, response2);
+            await callSendAPI(sender_psid, response1);
             resolve('done')
 
         } catch (error) {
