@@ -39,12 +39,12 @@ let callSendAPI = (sender_psid, response) => {
 let getUserName = (sender_psid) => {
     return new Promise((resolve, reject) => {
         request({
-            "uri": `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`,
+            "uri": `https://graph.facebook.com/${sender_psid}?fields=first_name,last_name,gender,profile_pic&access_token=${PAGE_ACCESS_TOKEN}`,
             "method": "GET",
         }, (err, res, body) => {
             if (!err) {
                 body = JSON.parse(body);
-                let username = `${body.gender} ${body.last_name} ${body.first_name}`
+                let username = `${body.gender === 'male' ? 'Anh' : 'Chị'} ${body.last_name} ${body.first_name}`
                 resolve(username)
             } else {
                 console.error("Unable to send message:" + err);
@@ -58,7 +58,39 @@ let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
-            let response1 = { "text": `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.` }
+            // let response1 = { "text": `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.` }
+            let response1 = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": "Cửa hàng TechStore TvT xin kính chào quý khách",
+                                "subtitle": "Dưới đây là các lựa chọn của nhà hàng",
+                                "image_url": "https://shorturl.ac/7as92",
+                                "buttons": [
+                                    {
+                                        "type": "postback",
+                                        "title": "MENU CHÍNH",
+                                        "payload": "MAIN_MENU",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "ĐẶT BÀN",
+                                        "payload": "RESERVER_TABLE",
+                                    },
+                                    {
+                                        "type": "postback",
+                                        "title": "HƯỚNG DẪN SỬ DỤNG BOT",
+                                        "payload": "GUIDE_TO_USE",
+                                    }
+                                ],
+                            },
+                        ]
+                    }
+                }
+            }
             let response2 = sendGetStartedTemplate();
 
             await callSendAPI(sender_psid, response2);
@@ -81,7 +113,7 @@ let sendGetStartedTemplate = () => {
                     {
                         "title": "Cửa hàng TechStore TvT xin kính chào quý khách",
                         "subtitle": "Dưới đây là các lựa chọn của nhà hàng",
-                        "image_url": IMAGE_GET_STARTED,
+                        "image_url": "https://shorturl.ac/7as92",
                         "buttons": [
                             {
                                 "type": "postback",

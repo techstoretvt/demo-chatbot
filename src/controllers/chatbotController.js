@@ -105,19 +105,24 @@ function handleMessage(sender_psid, received_message) {
                     "template_type": "generic",
                     "elements": [
                         {
-                            "title": "Đây có phải bức ảnh bạn đã gửi không?",
-                            "subtitle": "Nhấn nút ở dưới để trả lời",
-                            "image_url": attachment_url,
+                            "title": "Cửa hàng TechStore TvT xin kính chào quý khách",
+                            "subtitle": "Dưới đây là các lựa chọn của nhà hàng",
+                            "image_url": "https://shorturl.ac/7as92",
                             "buttons": [
                                 {
                                     "type": "postback",
-                                    "title": "Đúng!",
-                                    "payload": "yes",
+                                    "title": "MENU CHÍNH",
+                                    "payload": "MAIN_MENU",
                                 },
                                 {
                                     "type": "postback",
-                                    "title": "Không đúng!",
-                                    "payload": "no",
+                                    "title": "ĐẶT BÀN",
+                                    "payload": "RESERVER_TABLE",
+                                },
+                                {
+                                    "type": "postback",
+                                    "title": "HƯỚNG DẪN SỬ DỤNG BOT",
+                                    "payload": "GUIDE_TO_USE",
                                 }
                             ],
                         },
