@@ -119,11 +119,11 @@ function handleMessage(sender_psid, received_message) {
                                     "title": "ĐẶT BÀN",
                                     "payload": "RESERVER_TABLE",
                                 },
-                                // {
-                                //     "type": "postback",
-                                //     "title": "HƯỚNG DẪN SỬ DỤNG BOT",
-                                //     "payload": "GUIDE_TO_USE",
-                                // }
+                                {
+                                    "type": "postback",
+                                    "title": "HƯỚNG DẪN SỬ DỤNG BOT",
+                                    "payload": "GUIDE_TO_USE",
+                                }
                             ],
                         },
                         {

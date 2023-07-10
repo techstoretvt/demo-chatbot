@@ -58,43 +58,11 @@ let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
-            // let response1 = { "text": `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.` }
-            let response1 = {
-                "attachment": {
-                    "type": "template",
-                    "payload": {
-                        "template_type": "generic",
-                        "elements": [
-                            {
-                                "title": "Cửa hàng TechStore TvT xin kính chào quý khách",
-                                "subtitle": "Dưới đây là các lựa chọn của nhà hàng",
-                                "image_url": "https://shorturl.ac/7as92",
-                                "buttons": [
-                                    {
-                                        "type": "postback",
-                                        "title": "MENU CHÍNH",
-                                        "payload": "MAIN_MENU",
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "ĐẶT BÀN",
-                                        "payload": "RESERVER_TABLE",
-                                    },
-                                    {
-                                        "type": "postback",
-                                        "title": "HƯỚNG DẪN SỬ DỤNG BOT",
-                                        "payload": "GUIDE_TO_USE",
-                                    }
-                                ],
-                            },
-                        ]
-                    }
-                }
-            }
+            let response1 = { "text": `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.` }
             let response2 = sendGetStartedTemplate();
 
-            await callSendAPI(sender_psid, response2);
             await callSendAPI(sender_psid, response1);
+            await callSendAPI(sender_psid, response2);
             resolve('done')
 
         } catch (error) {
@@ -113,7 +81,7 @@ let sendGetStartedTemplate = () => {
                     {
                         "title": "Cửa hàng TechStore TvT xin kính chào quý khách",
                         "subtitle": "Dưới đây là các lựa chọn của nhà hàng",
-                        "image_url": "https://shorturl.ac/7as92",
+                        "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
                         "buttons": [
                             {
                                 "type": "postback",
@@ -125,11 +93,11 @@ let sendGetStartedTemplate = () => {
                                 "title": "ĐẶT BÀN",
                                 "payload": "RESERVER_TABLE",
                             },
-                            {
-                                "type": "postback",
-                                "title": "HƯỚNG DẪN SỬ DỤNG BOT",
-                                "payload": "GUIDE_TO_USE",
-                            }
+                            // {
+                            //     "type": "postback",
+                            //     "title": "HƯỚNG DẪN SỬ DỤNG BOT",
+                            //     "payload": "GUIDE_TO_USE",
+                            // }
                         ],
                     },
                 ]
