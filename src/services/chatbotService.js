@@ -2,6 +2,7 @@ import request from 'request';
 require('dotenv').config();
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const IMAGE_GET_STARTED = "https://shorturl.ac/7as92"
 
 let callSendAPI = (sender_psid, response) => {
     let request_body = {
@@ -34,7 +35,7 @@ let getUserName = (sender_psid) => {
         }, (err, res, body) => {
             if (!err) {
                 body = JSON.parse(body);
-                let username = `${body.last_name} ${body.first_name}`
+                let username = `${body.gender === 'male' ? 'Anh' : 'Chị'} ${body.last_name} ${body.first_name}`
                 resolve(username)
             } else {
                 console.error("Unable to send message:" + err);
@@ -48,14 +49,87 @@ let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
-            let response = { "text": `Xin chào mừng bạn ${username} đến với Website mua sắm trực tiếp của chúng tôi.` }
-            await callSendAPI(sender_psid, response);
+            let response1 = { "text": `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.` }
+            let response2 = sendGetStartedTemplate()
+
+            await callSendAPI(sender_psid, response1);
+            await callSendAPI(sender_psid, response2);
             resolve('done')
 
         } catch (error) {
             reject(error);
         }
     })
+}
+
+let sendGetStartedTemplate = () => {
+    let response = {
+        "attachment": {
+            "type": "template",
+            "payload": {
+                "template_type": "generic",
+                "elements": [
+                    {
+                        "title": "Cửa hàng TechStore TvT xin kính chào quý khách",
+                        "subtitle": "Dưới đây là các lựa chọn của nhà hàng",
+                        "image_url": IMAGE_GET_STARTED,
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "MENU CHÍNH",
+                                "payload": "MAIN_MENU",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "ĐẶT BÀN",
+                                "payload": "RESERVER_TABLE",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "HƯỚNG DẪN SỬ DỤNG BOT",
+                                "payload": "GUIDE_TO_USE",
+                            }
+                        ],
+                    },
+                    {
+                        "title": "Đây có phải bức ảnh bạn đã gửi không?",
+                        "subtitle": "Nhấn nút ở dưới để trả lời",
+                        "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Đúng!",
+                                "payload": "yes",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Không đúng!",
+                                "payload": "no",
+                            }
+                        ],
+                    },
+                    {
+                        "title": "Đây có phải bức ảnh bạn đã gửi không?",
+                        "subtitle": "Nhấn nút ở dưới để trả lời",
+                        "image_url": "https://bizweb.dktcdn.net/100/438/408/files/anh-gai-cute-chupinstagram-yody-vn1.jpg?v=1681963785998",
+                        "buttons": [
+                            {
+                                "type": "postback",
+                                "title": "Đúng!",
+                                "payload": "yes",
+                            },
+                            {
+                                "type": "postback",
+                                "title": "Không đúng!",
+                                "payload": "no",
+                            }
+                        ],
+                    },
+                ]
+            }
+        }
+    }
+    return response;
 }
 
 module.exports = {
