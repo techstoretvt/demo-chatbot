@@ -5,26 +5,33 @@ const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const IMAGE_GET_STARTED = "https://shorturl.ac/7as92"
 
 let callSendAPI = (sender_psid, response) => {
-    let request_body = {
-        "recipient": {
-            "id": sender_psid
-        },
-        "message": response
-    }
-
-    // Send the HTTP request to the Messenger Platform
-    request({
-        "uri": "https://graph.facebook.com/v9.0/me/messages",
-        "qs": { "access_token": PAGE_ACCESS_TOKEN },
-        "method": "POST",
-        "json": request_body
-    }, (err, res, body) => {
-        if (!err) {
-            console.log('message sent!')
-        } else {
-            console.error("Unable to send message:" + err);
+    let now = new Date().getTime();
+    console.log('Goi hand send api: ', now);
+    return new Promise((resolve, reject) => {
+        let request_body = {
+            "recipient": {
+                "id": sender_psid
+            },
+            "message": response
         }
-    });
+
+        // Send the HTTP request to the Messenger Platform
+        request({
+            "uri": "https://graph.facebook.com/v9.0/me/messages",
+            "qs": { "access_token": PAGE_ACCESS_TOKEN },
+            "method": "POST",
+            "json": request_body
+        }, (err, res, body) => {
+            if (!err) {
+                console.log('message sent!')
+                resolve('done')
+            } else {
+                console.error("Unable to send message:" + err);
+                reject(err)
+            }
+        });
+    })
+
 }
 
 let getUserName = (sender_psid) => {
@@ -35,7 +42,7 @@ let getUserName = (sender_psid) => {
         }, (err, res, body) => {
             if (!err) {
                 body = JSON.parse(body);
-                let username = `${body.gender === 'male' ? 'Anh' : 'Chị'} ${body.last_name} ${body.first_name}`
+                let username = `${body.gender} ${body.last_name} ${body.first_name}`
                 resolve(username)
             } else {
                 console.error("Unable to send message:" + err);
@@ -50,7 +57,7 @@ let handleGetStarted = (sender_psid) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = { "text": `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.` }
-            let response2 = sendGetStartedTemplate()
+            let response2 = sendGetStartedTemplate();
 
             await callSendAPI(sender_psid, response1);
             await callSendAPI(sender_psid, response2);
