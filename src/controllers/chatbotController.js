@@ -150,9 +150,12 @@ async function handlePostback(sender_psid, received_postback) {
         case 'no':
             response = { "text": "Oops, try sending another image." }
             break;
+        case 'RESTART_BOT':
         case 'GET_STARTED':
             await chatbotService.handleGetStarted(sender_psid);
             break;
+
+
         default:
             response = { "text": `opp! I don't know responese with postback ${payload}` }
     }
@@ -209,7 +212,55 @@ const setupProfile = async (req, res) => {
         }
     });
 
-    res.json({
+    return res.json({
+        message: 'ok'
+    })
+}
+
+const setupPersistentMenu = async (req, res) => {
+    //call profile facebook api
+    let request_body = {
+        "persistent_menu": [
+            {
+                "locale": "default",
+                "composer_input_disabled": false,
+                "call_to_actions": [
+                    {
+                        "type": "web_url",
+                        "title": "Youtube of TechStoreTvT",
+                        "url": "https://tranvanthoai.online/",
+                        "webview_height_ratio": "full"
+                    },
+                    {
+                        "type": "web_url",
+                        "title": "Facebook TechStoreTvT",
+                        "url": "https://www.facebook.com/tranv.thoai.7/",
+                        "webview_height_ratio": "full"
+                    },
+                    {
+                        "type": "postback",
+                        "title": "Restart bot",
+                        "payload": "RESTART_BOT"
+                    }
+                ]
+            }
+        ]
+    }
+    await request({
+        "uri": "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=" + PAGE_ACCESS_TOKEN,
+        "qs": { "access_token": PAGE_ACCESS_TOKEN },
+        "method": "POST",
+        "json": request_body
+    }, (err, res, body) => {
+        console.log("body:", body)
+        if (!err) {
+            console.log('Setup persistent menu sucess')
+        } else {
+            console.error("Unable to setup persistent menu:" + err);
+        }
+    });
+
+    return res.json({
         message: 'ok'
     })
 }
@@ -218,5 +269,6 @@ module.exports = {
     getHomePage,
     getWebHook,
     postWebHook,
-    setupProfile
+    setupProfile,
+    setupPersistentMenu
 }
