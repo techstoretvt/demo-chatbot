@@ -107,7 +107,7 @@ function handleMessage(sender_psid, received_message) {
                         {
                             "title": "Cửa hàng TechStore TvT xin kính chào quý khách",
                             "subtitle": "Dưới đây là các lựa chọn của nhà hàng",
-                            "image_url": "https://shorturl.ac/7as92",
+                            "image_url": attachment_url,
                             "buttons": [
                                 {
                                     "type": "postback",
@@ -119,11 +119,11 @@ function handleMessage(sender_psid, received_message) {
                                     "title": "ĐẶT BÀN",
                                     "payload": "RESERVER_TABLE",
                                 },
-                                {
-                                    "type": "postback",
-                                    "title": "HƯỚNG DẪN SỬ DỤNG BOT",
-                                    "payload": "GUIDE_TO_USE",
-                                }
+                                // {
+                                //     "type": "postback",
+                                //     "title": "HƯỚNG DẪN SỬ DỤNG BOT",
+                                //     "payload": "GUIDE_TO_USE",
+                                // }
                             ],
                         },
                         {
