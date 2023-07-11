@@ -4,6 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Demo chatbot</title>
+    <style>
+      .container {
+        width: 500px;
+        height: 350px;
+        border: 1px solid #000;
+        display: flex;
+        position: relative;
+        scroll-snap-type: x mandatory;
+        overflow-x: scroll;
+      }
+
+      .container::-webkit-scrollbar{
+        display: none;
+      }
+
+      img {
+        width: 100%;
+        left: 0;
+        position: sticky;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        object-fit: cover;
+      }
+    </style>
 </head>
 <body>
     <h1>Hello world 2</h1>
@@ -24,6 +48,19 @@
     <!-- Your Plugin chat code -->
     <div id="fb-customer-chat" class="fb-customerchat">
     </div>
+
+
+    //Demo
+
+    <div class="container">
+      <img src="https://kynguyenlamdep.com/wp-content/uploads/2022/06/anh-gai-xinh-cuc-dep.jpg" alt="">
+      <img src="https://i.pinimg.com/736x/f8/3f/94/f83f94c94b92aee93b774cbb06f33e24.jpg" alt="">
+      <img src="https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg" alt="">
+      <img src="https://imgt.taimienphi.vn/cf/Images/np/2022/8/16/anh-gai-xinh-cute-de-thuong-hot-girl-2.jpg" alt="">
+    </div>
+
+
+
 
     <script>
       var chatbox = document.getElementById('fb-customer-chat');
