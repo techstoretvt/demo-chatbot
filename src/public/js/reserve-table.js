@@ -12,6 +12,7 @@
 
 window.extAsyncInit = function () {
     // the Messenger Extensions JS SDK is done loading
+    console.log('file: reserve-table.js:15 - loading:', MessengerExtensions);
 
     MessengerExtensions.getContext(
         '1225198088353816',
@@ -19,23 +20,27 @@ window.extAsyncInit = function () {
             // success
             //set psid to input
             $('#psid').val(thread_context.psid);
-            alert('id: ', thread_context.psid);
             handleClickButtonReserveTable();
             $('#check-error').text('khong loi');
+            console.log('id: ', thread_context);
         },
         function error(err) {
             // error
             console.log('Lỗi đặt bàn Eric bot', err);
             $('#check-error').text('co loi');
-            MessengerExtensions.requestCloseBrowser(
-                function success() {
-                    // webview closed
-                },
-                function error(err) {
-                    // an error occurred
-                    console.log(err);
-                }
-            );
+        }
+    );
+
+    MessengerExtensions.getUserID(
+        function success(thread_context) {
+            // success
+            //set psid to input
+
+            console.log('success: ', thread_context);
+        },
+        function error(err) {
+            // error
+            console.log('error');
         }
     );
 };
