@@ -298,6 +298,33 @@ let handleReserveTable = (req, res) => {
     return res.render('reserve-table.ejs');
 };
 
+let handlePostReserveTable = async (req, res) => {
+    try {
+        let customerName = '';
+        if (req.body.customerName === '') {
+            customerName = 'De trong';
+        } else customerName = req.body.customerName;
+
+        let response1 = {
+            text: `---Thong tin khach hang dat ban---
+            \nHo va ten: ${customerName}
+            \nDia chi email: ${req.body.email}
+            \nSo dien thoai: ${req.body.phoneNumber}
+            `,
+        };
+
+        await chatbotService.callSendAPI(req.body.psid, response1);
+        return res.status(200).json({
+            message: 'ok',
+        });
+    } catch (error) {
+        console.log('file: chatbotController.js:305 - error:', error);
+        return res.status(500).json({
+            message: 'Server error',
+        });
+    }
+};
+
 module.exports = {
     getHomePage,
     getWebHook,
@@ -305,4 +332,5 @@ module.exports = {
     setupProfile,
     setupPersistentMenu,
     handleReserveTable,
+    handlePostReserveTable,
 };
