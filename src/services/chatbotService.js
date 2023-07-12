@@ -10,12 +10,44 @@ let callSendAPI = (sender_psid, response) => {
     console.log('Goi hand send api: ', now);
     console.log('response: ', response);
 
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
         let request_body = {
             recipient: {
                 id: sender_psid,
             },
             message: response,
+        };
+
+        await sendTypingOn(sender_psid);
+        await sendMarkReadMessage(sender_psid);
+        // Send the HTTP request to the Messenger Platform
+        request(
+            {
+                uri: 'https://graph.facebook.com/v9.0/me/messages',
+                qs: { access_token: PAGE_ACCESS_TOKEN },
+                method: 'POST',
+                json: request_body,
+            },
+            (err, res, body) => {
+                if (!err) {
+                    // console.log('message sent!')
+                    resolve('done');
+                } else {
+                    console.error('Unable to send message:' + err);
+                    reject(err);
+                }
+            }
+        );
+    });
+};
+
+let sendTypingOn = (sender_psid) => {
+    return new Promise((resolve, reject) => {
+        let request_body = {
+            recipient: {
+                id: sender_psid,
+            },
+            sender_action: 'typing_on',
         };
 
         // Send the HTTP request to the Messenger Platform
@@ -28,7 +60,37 @@ let callSendAPI = (sender_psid, response) => {
             },
             (err, res, body) => {
                 if (!err) {
-                    // console.log('message sent!')
+                    console.log('sendTypingOn success!');
+                    resolve('done');
+                } else {
+                    console.error('Unable to send message:' + err);
+                    reject(err);
+                }
+            }
+        );
+    });
+};
+
+let sendMarkReadMessage = (sender_psid) => {
+    return new Promise((resolve, reject) => {
+        let request_body = {
+            recipient: {
+                id: sender_psid,
+            },
+            sender_action: 'mark_seen',
+        };
+
+        // Send the HTTP request to the Messenger Platform
+        request(
+            {
+                uri: 'https://graph.facebook.com/v9.0/me/messages',
+                qs: { access_token: PAGE_ACCESS_TOKEN },
+                method: 'POST',
+                json: request_body,
+            },
+            (err, res, body) => {
+                if (!err) {
+                    console.log('sendTypingOn success!');
                     resolve('done');
                 } else {
                     console.error('Unable to send message:' + err);
@@ -390,7 +452,7 @@ let getDetailViewAppetizerTemplate = () => {
     return response;
 };
 
-let handleDetailViewFish = () => {
+let handleDetailViewFish = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let response1 = getDetailViewFishTemplate();
@@ -445,7 +507,7 @@ let getDetailViewFishTemplate = () => {
     return response;
 };
 
-let handleDetailViewMeat = () => {
+let handleDetailViewMeat = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let response1 = getDetailViewMeatTemplate();
