@@ -54,40 +54,45 @@ function validateInputFields() {
 }
 
 function handleClickButtonReserveTable() {
-    $('#btnReserveTable').on('click', function (e) {
-        let check = validateInputFields(); //return true or false
+    console.log('vao 1');
+    document
+        .getElementById('btnReserveTable')
+        .addEventListener('click', function (e) {
+            console.log('vao');
+            let check = validateInputFields(); //return true or false
 
-        let data = {
-            psid: $('#psid').val(),
-            customerName: $('#customerName').val(),
-            email: $('#email').val(),
-            phoneNumber: $('#phoneNumber').val(),
-        };
+            let data = {
+                psid: $('#psid').val(),
+                customerName: $('#customerName').val(),
+                email: $('#email').val(),
+                phoneNumber: $('#phoneNumber').val(),
+            };
 
-        if (!check) {
-            //close webview
-            MessengerExtensions.requestCloseBrowser(
-                function success() {
-                    // webview closed
-                },
-                function error(err) {
-                    // an error occurred
-                    console.log(err);
-                }
-            );
+            if (!check) {
+                //close webview
+                MessengerExtensions.requestCloseBrowser(
+                    function success() {
+                        // webview closed
+                    },
+                    function error(err) {
+                        // an error occurred
+                        console.log(err);
+                    }
+                );
 
-            //send data to node.js server
-            $.ajax({
-                url: `${window.location.origin}/reserve-table-ajax`,
-                method: 'POST',
-                data: data,
-                success: function (data) {
-                    console.log(data);
-                },
-                error: function (error) {
-                    console.log(error);
-                },
-            });
-        }
-    });
+                //send data to node.js server
+                $.ajax({
+                    url: `${window.location.origin}/reserve-table-ajax`,
+                    method: 'POST',
+                    data: data,
+                    success: function (data) {
+                        console.log(data);
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    },
+                });
+            }
+        });
 }
+// handleClickButtonReserveTable();
