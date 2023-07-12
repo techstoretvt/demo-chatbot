@@ -159,9 +159,11 @@ let getStartedTemplate = () => {
                                 payload: 'MAIN_MENU',
                             },
                             {
-                                type: 'postback',
+                                type: 'web_url',
                                 title: 'ĐẶT BÀN',
-                                payload: 'RESERVER_TABLE',
+                                url: 'https://demo-chatbot-9rjf.onrender.com/reserve-table',
+                                webview_height_ratio: 'tall',
+                                messenger_extensions: true,
                             },
                             {
                                 type: 'postback',
@@ -223,9 +225,11 @@ const getMainMenuTemplate = () => {
                         image_url: IMAGE_GET_STARTED,
                         buttons: [
                             {
-                                type: 'postback',
-                                title: 'DAT BAN',
-                                payload: 'RESERVER_TABLE',
+                                type: 'web_url',
+                                title: 'ĐẶT BÀN',
+                                url: 'https://demo-chatbot-9rjf.onrender.com/reserve-table',
+                                webview_height_ratio: 'tall',
+                                messenger_extensions: true,
                             },
                         ],
                     },
@@ -593,9 +597,11 @@ let getButtonRoomsTemplate = () => {
                         payload: 'MAIN_MENU',
                     },
                     {
-                        type: 'postback',
-                        title: 'DAT BAN',
-                        payload: 'RESERVER_TABLE',
+                        type: 'web_url',
+                        title: 'ĐẶT BÀN',
+                        url: 'https://demo-chatbot-9rjf.onrender.com/reserve-table',
+                        webview_height_ratio: 'tall',
+                        messenger_extensions: true,
                     },
                 ],
             },

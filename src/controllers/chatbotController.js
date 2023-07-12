@@ -168,6 +168,9 @@ async function handlePostback(sender_psid, received_postback) {
         case 'SHOW_ROOM':
             await chatbotService.handleShowDetailRooms(sender_psid);
             break;
+        // case 'RESERVER_TABLE':
+        //     await chatbotService.handleShowDetailRooms(sender_psid);
+        //     break;
         default:
             response = {
                 text: `opp! I don't know responese with postback ${payload}`,
@@ -291,10 +294,15 @@ const setupPersistentMenu = async (req, res) => {
     });
 };
 
+let handleReserveTable = (req, res) => {
+    return res.render('reserve-table.ejs');
+};
+
 module.exports = {
     getHomePage,
     getWebHook,
     postWebHook,
     setupProfile,
     setupPersistentMenu,
+    handleReserveTable,
 };
