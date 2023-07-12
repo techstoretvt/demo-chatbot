@@ -20,10 +20,12 @@ window.extAsyncInit = function () {
             //set psid to input
             $('#psid').val(thread_context.psid);
             handleClickButtonReserveTable();
+            $('#check-error').text('khong loi');
         },
         function error(err) {
             // error
             console.log('Lỗi đặt bàn Eric bot', err);
+            $('#check-error').text('co loi');
         }
     );
 };
