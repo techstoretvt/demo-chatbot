@@ -347,46 +347,50 @@ let getDinnerMenuTemplate = () => {
                 template_type: 'generic',
                 elements: [
                     {
-                        title: 'Menu cua nha hang',
-                        subtitle:
-                            'Chung toi rat han hanh mang den cho banj thuc don phong phu cho bua sang va bua toi',
+                        title: 'Mon trang mieng',
+                        subtitle: 'Nha hang co mon trang mien hap dan',
                         image_url: IMAGE_GET_STARTED,
                         buttons: [
                             {
                                 type: 'postback',
-                                title: 'BUA TRUA',
-                                payload: 'LUNCH_MENU',
-                            },
-                            {
-                                type: 'postback',
-                                title: 'BUA TOI',
-                                payload: 'DINNER_MENU',
+                                title: 'XEM CHI TIET',
+                                payload: 'VIEW_APPETIZERS',
                             },
                         ],
                     },
                     {
-                        title: 'GIO MO CUA',
-                        subtitle:
-                            'THU 2 10AM - 11PM | THU 7 5PM - 10PM | CHU NHAT 5PM - 9PM',
+                        title: 'Ca bay mau',
+                        subtitle: 'Ca nuoc man va ca nuoc ngot',
                         image_url: IMAGE_GET_STARTED,
                         buttons: [
                             {
                                 type: 'postback',
-                                title: 'DAT BAN',
-                                payload: 'RESERVER_TABLE',
+                                title: 'XEM CHI TIET',
+                                payload: 'VIEW_FISH',
                             },
                         ],
                     },
                     {
-                        title: 'KHONG GIAN NHA HANG',
-                        subtitle:
-                            'Nha hang co suc chua len den 300 khach ngoi va phuc vu cac bua tiec to',
+                        title: 'Thit hun khoi',
+                        subtitle: 'Dam bao chat luong hang dau',
                         image_url: IMAGE_GET_STARTED,
                         buttons: [
                             {
                                 type: 'postback',
-                                title: 'CHI TIET',
-                                payload: 'SHOW_ROOM',
+                                title: 'XEM CHI TIET',
+                                payload: 'VIEW_MEAT',
+                            },
+                        ],
+                    },
+                    {
+                        title: 'Quay tro lai',
+                        subtitle: 'Quay tro lai menu chinh',
+                        image_url: IMAGE_GET_STARTED,
+                        buttons: [
+                            {
+                                type: 'postback',
+                                title: 'QUAY TRO LAI',
+                                payload: 'BACK_TO_MAIN_MENU',
                             },
                         ],
                     },
@@ -562,6 +566,60 @@ let getDetailViewMeatTemplate = () => {
     return response;
 };
 
+let getImageRoomTemplate = () => {
+    let response = {
+        attachment: {
+            type: 'image',
+            payload: {
+                url: 'https://bedental.vn/wp-content/uploads/2022/11/hot-girl_8.jpg',
+                is_reusable: true,
+            },
+        },
+    };
+    return response;
+};
+
+let getButtonRoomsTemplate = () => {
+    let response = {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'button',
+                text: 'Nha hang co the phuc vu toi da 300 khach',
+                buttons: [
+                    {
+                        type: 'postback',
+                        title: 'MENU CHINH',
+                        payload: 'MAIN_MENU',
+                    },
+                    {
+                        type: 'postback',
+                        title: 'DAT BAN',
+                        payload: 'RESERVER_TABLE',
+                    },
+                ],
+            },
+        },
+    };
+    return response;
+};
+
+let handleShowDetailRooms = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response1 = getImageRoomTemplate();
+            let response2 = getButtonRoomsTemplate();
+
+            await callSendAPI(sender_psid, response1);
+            await callSendAPI(sender_psid, response2);
+
+            resolve('done');
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
 module.exports = {
     handleGetStarted,
     handleSendMainMenu,
@@ -570,4 +628,5 @@ module.exports = {
     handleDetailViewAppetizer,
     handleDetailViewFish,
     handleDetailViewMeat,
+    handleShowDetailRooms,
 };

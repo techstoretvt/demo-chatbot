@@ -80,6 +80,10 @@ function handleMessage(sender_psid, received_message) {
     // Check if the message contains text
     if (received_message.text) {
         // Create the payload for a basic text message
+        if (received_message.text === 'Mở menu') {
+            chatbotService.handleSendMainMenu(sender_psid);
+            return;
+        }
         response = {
             text: `You sent the message: "${received_message.text}". Now send me an image!`,
         };
@@ -160,6 +164,9 @@ async function handlePostback(sender_psid, received_postback) {
             break;
         case 'VIEW_MEAT':
             await chatbotService.handleDetailViewMeat(sender_psid);
+            break;
+        case 'SHOW_ROOM':
+            await chatbotService.handleShowDetailRooms(sender_psid);
             break;
         default:
             response = {
