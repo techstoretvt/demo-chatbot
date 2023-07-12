@@ -6,7 +6,7 @@
     }
     js = d.createElement(s);
     js.id = id;
-    js.src = '//connect.facebook.net/en_US/messenger.Extensions.js';
+    js.src = 'https://connect.facebook.net/en_US/messenger.Extensions.js';
     fjs.parentNode.insertBefore(js, fjs);
 })(document, 'script', 'Messenger');
 
@@ -19,6 +19,7 @@ window.extAsyncInit = function () {
             // success
             //set psid to input
             $('#psid').val(thread_context.psid);
+            alert('id: ', thread_context.psid);
             handleClickButtonReserveTable();
             $('#check-error').text('khong loi');
         },
@@ -26,6 +27,15 @@ window.extAsyncInit = function () {
             // error
             console.log('Lỗi đặt bàn Eric bot', err);
             $('#check-error').text('co loi');
+            MessengerExtensions.requestCloseBrowser(
+                function success() {
+                    // webview closed
+                },
+                function error(err) {
+                    // an error occurred
+                    console.log(err);
+                }
+            );
         }
     );
 };
