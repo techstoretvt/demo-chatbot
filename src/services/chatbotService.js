@@ -384,6 +384,13 @@ let getDinnerMenuTemplate = () => {
                                 title: 'XEM CHI TIET',
                                 payload: 'VIEW_MEAT',
                             },
+                            {
+                                type: 'web_url',
+                                title: 'Xem chi tiet 2',
+                                url: 'https://tranvanthoai.online/product/029a0615-fcaf-4336-9d4f-e200ff7685f9?name=%C4%91i%E1%BB%87n%20tho%E1%BA%A1i%20oneplus%20nord%20ce%203%20lite%20|%206.72%20inch%20ips%20lcd%20|%205000mah%20|%20snapdragon%20695%205g%20|%208gb%20256gb',
+                                webview_height_ratio: 'tall',
+                                messenger_extensions: true,
+                            },
                         ],
                     },
                     {
