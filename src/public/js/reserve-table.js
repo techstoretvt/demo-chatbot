@@ -75,6 +75,7 @@ handleClickButtonReserveTable();
 function handleClickButtonReserveTable() {
     let params = new URLSearchParams(document.location.search);
     let psid = params.get('psid');
+    $('#check-error').text(psid);
     console.log('vao 1', psid);
     document
         .getElementById('btnReserveTable')
