@@ -55,17 +55,12 @@ let writeDataToGoogleSheet = async (data) => {
         await sheet.addRow({
             'Tên Facebook': data.username,
             Email: data.email,
-            'Số điện thoại': data.phoneNumber,
+            'Số điện thoại': "'" + data.phoneNumber,
             'Thời gian': formatedDate,
             'Tên khách hàng': data.customerName,
         });
-
-        return res.send('Writing data to Google Sheet succeeds!');
     } catch (e) {
-        console.log('file: chatbotController.js:369 - e:', e);
-        return res.send(
-            'Oops! Something wrongs, check logs console for detail ... '
-        );
+        console.log('file: chatbotController.js:63 - e:', e);
     }
 };
 
