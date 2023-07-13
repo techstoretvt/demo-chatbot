@@ -300,6 +300,7 @@ let handleReserveTable = (req, res) => {
 
 let handlePostReserveTable = async (req, res) => {
     try {
+        console.log('psid: ', req.body.psid);
         await chatbotService.handleSendMainMenu(req.body.psid);
         let customerName = '';
         if (req.body.customerName === '') {
