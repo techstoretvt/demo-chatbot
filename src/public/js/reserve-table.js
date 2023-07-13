@@ -103,17 +103,39 @@ function handleClickButtonReserveTable() {
                 );
 
                 //send data to node.js server
-                $.ajax({
-                    url: `${window.location.origin}/reserve-table-ajax`,
-                    method: 'POST',
-                    data: data,
-                    success: function (data) {
+                console.log(
+                    'sfsd: ',
+                    `${window.location.origin}/reserve-table-ajax`
+                );
+                // $.ajax({
+                //     url: `/reserve-table-ajax`,
+                //     method: 'POST',
+                //     data: data,
+                //     success: function (data) {
+                //         console.log('data: ', data);
+                //     },
+                //     error: function (error) {
+                //         console.log('error: ', error);
+                //     },
+                // });
+
+                fetch('/reserve-table-ajax', {
+                    method: 'POST', // Thay đổi thành phương thức POST
+                    headers: {
+                        'Content-Type': 'application/json', // Kiểu dữ liệu truyền đi (application/json, application/x-www-form-urlencoded, v.v.)
+                        // Các headers khác (nếu cần)
+                    },
+                    body: JSON.stringify(data),
+                })
+                    .then((response) => response.json()) // Chuyển đổi dữ liệu trả về thành JSON
+                    .then((data) => {
+                        // Xử lý dữ liệu khi API trả về thành công
                         console.log(data);
-                    },
-                    error: function (error) {
+                    })
+                    .catch((error) => {
+                        // Xử lý lỗi khi gọi API không thành công
                         console.log(error);
-                    },
-                });
+                    });
             }
         });
 }
