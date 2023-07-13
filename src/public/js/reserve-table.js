@@ -21,13 +21,13 @@ window.extAsyncInit = function () {
             //set psid to input
             $('#psid').val(thread_context.psid);
             handleClickButtonReserveTable();
-            // $('#check-error').text('khong loi');
+            $('#check-error').text('khong loi');
             console.log('id: ', thread_context);
         },
         function error(err) {
             // error
             console.log('Lỗi đặt bàn Eric bot', err);
-            // $('#check-error').text('co loi');
+            $('#check-error').text('co loi');
         }
     );
 
@@ -75,7 +75,7 @@ handleClickButtonReserveTable();
 function handleClickButtonReserveTable() {
     let params = new URLSearchParams(document.location.search);
     let psid = params.get('psid');
-    $('#check-error').text(psid);
+    // $('#check-error').text(psid);
     console.log('vao 1', psid);
     document
         .getElementById('btnReserveTable')
