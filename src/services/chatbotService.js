@@ -130,7 +130,7 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.`,
             };
-            let response2 = getStartedTemplate();
+            let response2 = getStartedTemplate(sender_psid);
 
             await callSendAPI(sender_psid, response1);
             await callSendAPI(sender_psid, response2);
@@ -141,7 +141,7 @@ let handleGetStarted = (sender_psid) => {
     });
 };
 
-let getStartedTemplate = () => {
+let getStartedTemplate = (psid) => {
     let response = {
         attachment: {
             type: 'template',
@@ -161,7 +161,7 @@ let getStartedTemplate = () => {
                             {
                                 type: 'web_url',
                                 title: 'ĐẶT BÀN',
-                                url: 'https://demo-chatbot-9rjf.onrender.com/reserve-table',
+                                url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}`,
                                 webview_height_ratio: 'tall',
                                 messenger_extensions: true,
                             },
@@ -182,7 +182,7 @@ let getStartedTemplate = () => {
 let handleSendMainMenu = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let response1 = getMainMenuTemplate();
+            let response1 = getMainMenuTemplate(sender_psid);
 
             await callSendAPI(sender_psid, response1);
 
@@ -193,7 +193,7 @@ let handleSendMainMenu = (sender_psid) => {
     });
 };
 
-const getMainMenuTemplate = () => {
+const getMainMenuTemplate = (psid) => {
     let response = {
         attachment: {
             type: 'template',
@@ -227,7 +227,7 @@ const getMainMenuTemplate = () => {
                             {
                                 type: 'web_url',
                                 title: 'ĐẶT BÀN',
-                                url: 'https://demo-chatbot-9rjf.onrender.com/reserve-table',
+                                url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}`,
                                 webview_height_ratio: 'tall',
                                 messenger_extensions: true,
                             },
@@ -590,7 +590,7 @@ let getImageRoomTemplate = () => {
     return response;
 };
 
-let getButtonRoomsTemplate = () => {
+let getButtonRoomsTemplate = (psid) => {
     let response = {
         attachment: {
             type: 'template',
@@ -606,7 +606,7 @@ let getButtonRoomsTemplate = () => {
                     {
                         type: 'web_url',
                         title: 'ĐẶT BÀN',
-                        url: 'https://demo-chatbot-9rjf.onrender.com/reserve-table',
+                        url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}`,
                         webview_height_ratio: 'tall',
                         messenger_extensions: true,
                     },
@@ -621,7 +621,7 @@ let handleShowDetailRooms = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let response1 = getImageRoomTemplate();
-            let response2 = getButtonRoomsTemplate();
+            let response2 = getButtonRoomsTemplate(sender_psid);
 
             await callSendAPI(sender_psid, response1);
             await callSendAPI(sender_psid, response2);

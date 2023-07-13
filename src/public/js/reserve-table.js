@@ -70,8 +70,12 @@ function validateInputFields() {
     return false;
 }
 
+handleClickButtonReserveTable();
+
 function handleClickButtonReserveTable() {
-    console.log('vao 1');
+    let params = new URLSearchParams(document.location.search);
+    let psid = params.get('psid');
+    console.log('vao 1', psid);
     document
         .getElementById('btnReserveTable')
         .addEventListener('click', function (e) {
@@ -79,7 +83,7 @@ function handleClickButtonReserveTable() {
             let check = validateInputFields(); //return true or false
 
             let data = {
-                psid: $('#psid').val(),
+                psid: psid,
                 customerName: $('#customerName').val(),
                 email: $('#email').val(),
                 phoneNumber: $('#phoneNumber').val(),
@@ -112,4 +116,3 @@ function handleClickButtonReserveTable() {
             }
         });
 }
-// handleClickButtonReserveTable();
