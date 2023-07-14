@@ -131,6 +131,7 @@ async function handleMessage(sender_psid, received_message) {
         }
 
         if (received_message.quick_reply.payload === 'GUIDE_TO_USE') {
+            await chatbotService.handleGuideToUseBot(sender_psid);
         }
         return;
     }
@@ -205,6 +206,9 @@ async function handlePostback(sender_psid, received_postback) {
         case 'BACK_TO_MAIN_MENU':
         case 'MAIN_MENU':
             await chatbotService.handleSendMainMenu(sender_psid);
+            break;
+        case 'GUIDE_TO_USE':
+            await chatbotService.handleGuideToUseBot(sender_psid);
             break;
         case 'LUNCH_MENU':
             await chatbotService.handleSendLunchMenu(sender_psid);

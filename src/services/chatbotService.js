@@ -19,7 +19,7 @@ let callSendAPI = (sender_psid, response) => {
         };
 
         await sendTypingOn(sender_psid);
-        await sendMarkReadMessage(sender_psid);
+
         // Send the HTTP request to the Messenger Platform
         request(
             {
@@ -31,9 +31,11 @@ let callSendAPI = (sender_psid, response) => {
             (err, res, body) => {
                 if (!err) {
                     // console.log('message sent!')
+                    sendMarkReadMessage(sender_psid);
                     resolve('done');
                 } else {
                     console.error('Unable to send message:' + err);
+                    sendMarkReadMessage(sender_psid);
                     reject(err);
                 }
             }
@@ -671,6 +673,55 @@ let handleShowDetailRooms = (sender_psid) => {
     });
 };
 
+let getBotMediaTemplate = () => {
+    let response = {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'media',
+                elements: [
+                    {
+                        media_type: 'video',
+                        url: 'https://www.facebook.com/techstoretvt/videos/689508926322322',
+                        buttons: [
+                            {
+                                type: 'postback',
+                                title: 'MENU CHÍNH',
+                                payload: 'MAIN_MENU',
+                            },
+                            {
+                                type: 'web_url',
+                                title: 'Ghe tham website',
+                                url: `https://tranvanthoai.online/`,
+                            },
+                        ],
+                    },
+                ],
+            },
+        },
+    };
+    return response;
+};
+
+let handleGuideToUseBot = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let username = await getUserName(sender_psid);
+            let response1 = {
+                text: `Xin chào ${username}, mình là chatbot.\nĐể biết thêm thông tin, vui lòng xem video bên dưới 😊💕.`,
+            };
+            let response2 = getBotMediaTemplate(sender_psid);
+
+            await callSendAPI(sender_psid, response1);
+            await callSendAPI(sender_psid, response2);
+
+            resolve('done');
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
 module.exports = {
     handleGetStarted,
     handleSendMainMenu,
@@ -682,4 +733,5 @@ module.exports = {
     handleShowDetailRooms,
     callSendAPI,
     getUserName,
+    handleGuideToUseBot,
 };
