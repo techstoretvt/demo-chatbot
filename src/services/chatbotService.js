@@ -6,9 +6,9 @@ const IMAGE_GET_STARTED =
     'https://th.bing.com/th/id/R.773d15e33656ad2904165405a5a32317?rik=ofFDzfOn73Vz6w&pid=ImgRaw&r=0';
 
 let callSendAPI = (sender_psid, response) => {
-    let now = new Date().getTime();
-    console.log('Goi hand send api: ', now);
-    console.log('response: ', response);
+    // let now = new Date().getTime();
+    // console.log('Goi hand send api: ', now);
+    // console.log('response: ', response);
 
     return new Promise(async (resolve, reject) => {
         let request_body = {
@@ -183,12 +183,12 @@ let getStartedTemplate = (psid) => {
     return response;
 };
 
-let getImageGetStartedTemplate = (psid) => {
+let getImageGetStartedTemplate = () => {
     let response = {
         attachment: {
             type: 'image',
             payload: {
-                url: 'https://i.giphy.com/media/SggILpMXO7Xt6/giphy.webp',
+                url: 'https://khoinguonsangtao.vn/wp-content/uploads/2022/09/hinh-anh-gai-xinh-viet-nam.jpg',
                 is_reusable: true,
             },
         },
