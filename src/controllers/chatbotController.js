@@ -126,14 +126,14 @@ async function handleMessage(sender_psid, received_message) {
 
     //check messages for quick reply
     if (
-        received_message.quick_replies &&
-        received_message.quick_replies.payload
+        received_message.quick_replie &&
+        received_message.quick_replie.payload
     ) {
-        if (received_message.quick_replies.payload === 'MAIN_MENU') {
+        if (received_message.quick_replie.payload === 'MAIN_MENU') {
             await chatbotService.handleSendMainMenu(sender_psid);
         }
 
-        if (received_message.quick_replies.payload === 'GUIDE_TO_USE') {
+        if (received_message.quick_replie.payload === 'GUIDE_TO_USE') {
         }
         return;
     }
