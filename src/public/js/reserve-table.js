@@ -107,17 +107,6 @@ function handleClickButtonReserveTable() {
                     'sfsd: ',
                     `${window.location.origin}/reserve-table-ajax`
                 );
-                // $.ajax({
-                //     url: `/reserve-table-ajax`,
-                //     method: 'POST',
-                //     data: data,
-                //     success: function (data) {
-                //         console.log('data: ', data);
-                //     },
-                //     error: function (error) {
-                //         console.log('error: ', error);
-                //     },
-                // });
 
                 fetch('/reserve-table-ajax', {
                     method: 'POST', // Thay đổi thành phương thức POST

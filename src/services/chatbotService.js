@@ -130,10 +130,14 @@ let handleGetStarted = (sender_psid) => {
             let response1 = {
                 text: `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.`,
             };
-            let response2 = getStartedTemplate(sender_psid);
+            // let response2 = getStartedTemplate(sender_psid);
+            let response2 = getImageGetStartedTemplate();
+
+            let response3 = getStartedQuickReplyTemplate(sender_psid);
 
             await callSendAPI(sender_psid, response1);
             await callSendAPI(sender_psid, response2);
+            await callSendAPI(sender_psid, response3);
             resolve('done');
         } catch (error) {
             reject(error);
@@ -175,6 +179,45 @@ let getStartedTemplate = (psid) => {
                 ],
             },
         },
+    };
+    return response;
+};
+
+let getImageGetStartedTemplate = (psid) => {
+    let response = {
+        attachment: {
+            type: 'image',
+            payload: {
+                url: 'https://i.giphy.com/media/SggILpMXO7Xt6/giphy.webp',
+                is_reusable: true,
+            },
+        },
+    };
+    return response;
+};
+
+let getStartedQuickReplyTemplate = (psid) => {
+    let response = {
+        text: 'Dưới đây là các lựa chọn của nhà hàng',
+        quick_replies: [
+            {
+                content_type: 'text',
+                title: 'MENU CHINH',
+                payload: 'MAIN_MENU',
+                image_url:
+                    'https://khoinguonsangtao.vn/wp-content/uploads/2022/09/hinh-anh-gai-xinh-viet-nam.jpg',
+            },
+            {
+                content_type: 'text',
+                title: 'DAT BAN',
+                payload: '<POSTBACK_PAYLOAD>',
+            },
+            {
+                content_type: 'text',
+                title: 'HUONG DAN SU DUNG BOT',
+                payload: 'GUIDE_TO_USE',
+            },
+        ],
     };
     return response;
 };
