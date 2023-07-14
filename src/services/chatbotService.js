@@ -188,7 +188,7 @@ let getImageGetStartedTemplate = () => {
         attachment: {
             type: 'image',
             payload: {
-                url: 'https://khoinguonsangtao.vn/wp-content/uploads/2022/09/hinh-anh-gai-xinh-viet-nam.jpg',
+                url: 'https://24hstore.vn/upload_images/images/2019/11/14/anh-gif-1-min.gif',
                 is_reusable: true,
             },
         },
