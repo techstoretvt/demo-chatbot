@@ -209,12 +209,7 @@ let getStartedQuickReplyTemplate = (psid) => {
             },
             {
                 content_type: 'text',
-                title: 'DAT BAN',
-                payload: '<POSTBACK_PAYLOAD>',
-            },
-            {
-                content_type: 'text',
-                title: 'HUONG DAN SU DUNG BOT',
+                title: 'HD SU DUNG BOT',
                 payload: 'GUIDE_TO_USE',
             },
         ],
