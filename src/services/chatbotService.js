@@ -682,17 +682,18 @@ let getBotMediaTemplate = () => {
                 elements: [
                     {
                         media_type: 'video',
-                        url: 'https://www.facebook.com/techstoretvt/videos/689508926322322',
+                        attachment_id: "689508926322322",
+                        // url: 'https://www.facebook.com/techstoretvt/videos/689508926322322/',
                         buttons: [
                             {
                                 type: 'postback',
-                                title: 'MENU CHÍNH',
+                                title: 'MENU CHI NHÁNH',
                                 payload: 'MAIN_MENU',
                             },
                             {
                                 type: 'web_url',
-                                title: 'Ghe tham website',
-                                url: `https://tranvanthoai.online/`,
+                                title: 'Ghé thăm Khách sạn',
+                                url: `https://quanlykhachsan.vercel.app/`,
                             },
                         ],
                     },
@@ -708,7 +709,7 @@ let handleGuideToUseBot = (sender_psid) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = {
-                text: `Xin chào ${username}, mình là chatbot.\nĐể biết thêm thông tin, vui lòng xem video bên dưới 😊💕.`,
+                text: `Xin chào ${username}, mình là chatbot TBT HoTel.\nĐể biết thêm thông tin, vui lòng xem video bên dưới 😊💕.`,
             };
             let response2 = getBotMediaTemplate(sender_psid);
 
