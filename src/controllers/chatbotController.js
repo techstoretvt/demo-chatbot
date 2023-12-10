@@ -385,20 +385,20 @@ let handlePostReserveTable = async (req, res) => {
             sdt: req.body.phoneNumber
         }
 
-        let res = await axios.post("https://quanlykhachsan-backend.onrender.com/api/v1/dat-phong-ks-loai1-user", dataDatPhong)
-        res = res.data
+        let resAPI = await axios.post("https://quanlykhachsan-backend.onrender.com/api/v1/dat-phong-ks-loai1-user", dataDatPhong)
+        resAPI = resAPI.data
 
-        if (res?.errCode === 0) {
+        if (resAPI?.errCode === 0) {
             console.log('dat phong success');
         }
         else {
             let respone = {
-                text: res?.errMessage
+                text: resAPI?.errMessage
             }
-            console.log("dat phong fail: ", res?.errMessage);
+            console.log("dat phong fail: ", resAPI?.errMessage);
             await chatbotService.callSendAPI(req.body.psid, respone);
             return res.status(200).json({
-                message: res?.errMessage,
+                message: resAPI?.errMessage,
             });
         }
 
@@ -425,7 +425,7 @@ let handlePostReserveTable = async (req, res) => {
             message: 'ok',
         });
     } catch (error) {
-        console.log('file: chatbotController.js:305 - error:', error);
+        console.log('file: chatbotController.js:428 - error:', error);
         return res.status(500).json({
             message: 'Server error',
         });
