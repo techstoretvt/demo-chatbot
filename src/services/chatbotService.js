@@ -681,19 +681,24 @@ let getBotMediaTemplate = () => {
                 template_type: 'media',
                 elements: [
                     {
-                        media_type: 'video',
+                        media_type: 'iamge',
                         // attachment_id: "689508926322322",
-                        url: 'https://business.facebook.com/techstoretvt/videos/689508926322322',
+                        url: 'https://business.facebook.com/techstoretvt/photos/326899106968659',
                         buttons: [
                             {
-                                type: 'postback',
-                                title: 'MENU CHI NHÁNH',
-                                payload: 'MAIN_MENU',
+                                type: 'web_url',
+                                title: 'Xem video hướng dẫn',
+                                url: `https://quanlykhachsan.vercel.app/`,
                             },
                             {
                                 type: 'web_url',
                                 title: 'Ghé thăm Khách sạn',
                                 url: `https://quanlykhachsan.vercel.app/`,
+                            },
+                            {
+                                type: 'postback',
+                                title: 'MENU CHI NHÁNH',
+                                payload: 'MAIN_MENU',
                             },
                         ],
                     },
