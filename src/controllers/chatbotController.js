@@ -144,7 +144,7 @@ async function handleMessage(sender_psid, received_message) {
             return;
         }
         response = {
-            text: `You sent the message: "${received_message.text}". Now send me an image!`,
+            text: `Bạn vừa gửi tin nhắn: "${received_message.text}". Chúng tôi sẽ sớm phản hồi cho bạn!`,
         };
     } else if (received_message.attachments) {
         // Get the URL of the message attachment
@@ -156,19 +156,14 @@ async function handleMessage(sender_psid, received_message) {
                     template_type: 'generic',
                     elements: [
                         {
-                            title: 'Cửa hàng TechStore TvT xin kính chào quý khách',
-                            subtitle: 'Dưới đây là các lựa chọn của nhà hàng',
+                            title: 'Khách sạn TBT Hotel xin kính chào quý khách',
+                            subtitle: 'Dưới đây là các lựa chọn của khách sạn',
                             image_url: attachment_url,
                             buttons: [
                                 {
                                     type: 'postback',
                                     title: 'MENU CHÍNH',
                                     payload: 'MAIN_MENU',
-                                },
-                                {
-                                    type: 'postback',
-                                    title: 'ĐẶT BÀN',
-                                    payload: 'RESERVER_TABLE',
                                 },
                                 {
                                     type: 'postback',
