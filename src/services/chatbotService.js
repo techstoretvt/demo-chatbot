@@ -207,7 +207,7 @@ let getStartedQuickReplyTemplate = (psid) => {
                 title: 'MENU CHI NHÁNH',
                 payload: 'MAIN_MENU',
                 image_url:
-                    'https://drive.google.com/file/d/1XKz1_69rTZeZyyWJ67ARqFJ23g6jsUwU/view?usp=drive_link',
+                    'https://techstoretvt.github.io/kho-anh/5c28b0daffe956b70ff8.jpg',
             },
             {
                 content_type: 'text',
