@@ -124,6 +124,7 @@ let getUserName = (sender_psid) => {
     });
 };
 
+//get started va reset menu
 let handleGetStarted = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
@@ -199,14 +200,14 @@ let getImageGetStartedTemplate = () => {
 
 let getStartedQuickReplyTemplate = (psid) => {
     let response = {
-        text: 'Dưới đây là các lựa chọn của nhà hàng',
+        text: 'Dưới đây là các lựa chọn của khách sạn',
         quick_replies: [
             {
                 content_type: 'text',
                 title: 'MENU CHI NHÁNH',
                 payload: 'MAIN_MENU',
                 image_url:
-                    'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/305216604_1334011580739575_5174738522536992751_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=WpIrJPwLLvMAX_DZKP-&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfDy_GAulIBmfODefHV2427pQejt5c_1S1R3Wz3Wh0lGdw&oe=6579F6AD',
+                    'https://drive.google.com/file/d/1XKz1_69rTZeZyyWJ67ARqFJ23g6jsUwU/view?usp=drive_link',
             },
             {
                 content_type: 'text',
