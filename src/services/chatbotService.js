@@ -113,9 +113,8 @@ let getUserName = (sender_psid) => {
             (err, res, body) => {
                 if (!err) {
                     body = JSON.parse(body);
-                    let username = `${body.gender === 'male' ? 'Anh' : 'Chị'} ${
-                        body.last_name
-                    } ${body.first_name}`;
+                    let username = `${body.gender === 'male' ? 'Anh' : 'Chị'} ${body.last_name
+                        } ${body.first_name}`;
                     resolve(username);
                 } else {
                     console.error('Unable to send message:' + err);
@@ -130,7 +129,7 @@ let handleGetStarted = (sender_psid) => {
         try {
             let username = await getUserName(sender_psid);
             let response1 = {
-                text: `Xin chào mừng ${username} đến với Website mua sắm trực tiếp của chúng tôi.`,
+                text: `Xin chào mừng ${username} đến với Khách sạn của chúng tôi.`,
             };
             // let response2 = getStartedTemplate(sender_psid);
             let response2 = getImageGetStartedTemplate();
@@ -204,10 +203,10 @@ let getStartedQuickReplyTemplate = (psid) => {
         quick_replies: [
             {
                 content_type: 'text',
-                title: 'MENU CHINH',
+                title: 'MENU CHI NHÁNH',
                 payload: 'MAIN_MENU',
                 image_url:
-                    'https://khoinguonsangtao.vn/wp-content/uploads/2022/09/hinh-anh-gai-xinh-viet-nam.jpg',
+                    'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/305216604_1334011580739575_5174738522536992751_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=WpIrJPwLLvMAX_DZKP-&_nc_ht=scontent.fsgn2-5.fna&oh=00_AfDy_GAulIBmfODefHV2427pQejt5c_1S1R3Wz3Wh0lGdw&oe=6579F6AD',
             },
             {
                 content_type: 'text',
