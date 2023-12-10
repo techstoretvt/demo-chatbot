@@ -281,34 +281,6 @@ let HandleXemPhongCN1 = (sender_psid) => {
                                     },
                                 ],
                             },
-                            // {
-                            //     title: 'GIO MO CUA',
-                            //     subtitle:
-                            //         'THU 2 10AM - 11PM | THU 7 5PM - 10PM | CHU NHAT 5PM - 9PM',
-                            //     image_url: IMAGE_GET_STARTED,
-                            //     buttons: [
-                            //         {
-                            //             type: 'web_url',
-                            //             title: 'ĐẶT BÀN',
-                            //             url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}`,
-                            //             webview_height_ratio: 'tall',
-                            //             messenger_extensions: true,
-                            //         },
-                            //     ],
-                            // },
-                            // {
-                            //     title: 'KHONG GIAN NHA HANG',
-                            //     subtitle:
-                            //         'Nha hang co suc chua len den 300 khach ngoi va phuc vu cac bua tiec to',
-                            //     image_url: IMAGE_GET_STARTED,
-                            //     buttons: [
-                            //         {
-                            //             type: 'postback',
-                            //             title: 'CHI TIET',
-                            //             payload: 'SHOW_ROOM',
-                            //         },
-                            //     ],
-                            // },
                         ],
                     },
                 },
@@ -333,25 +305,21 @@ let HandleXemChiTietCN1Phong101 = (sender_psid) => {
                         template_type: 'generic',
                         elements: [
                             {
+                                title: 'anh1',
+                                subtitle:
+                                    'gia',
                                 image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702107825/quanlykhachsan/aptladyynhe7d77ovgbj.jpg",
                             },
                             {
+                                title: 'anh 2',
+                                subtitle:
+                                    'gia 2',
                                 image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702108115/quanlykhachsan/txqculhzh9em8fjjurdj.jpg",
                             },
                             {
-                                image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702138753/quanlykhachsan/wnrngt3jrebrtz53aksx.jpg",
+                                title: 'anh 3',
+                                subtitle: "gia 3",
                             },
-                            // {
-                            //     buttons: [
-                            //         {
-                            //             type: 'web_url',
-                            //             title: 'ĐẶT PHÒNG',
-                            //             url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}&idPhong=41b85fba-071a-4058-a030-0bb76195ec9a`,
-                            //             webview_height_ratio: 'tall',
-                            //             messenger_extensions: true,
-                            //         },
-                            //     ],
-                            // },
                         ],
                     },
                 },
