@@ -103,9 +103,6 @@ function handleClickButtonReserveTable() {
 
             // console.log("data: ", data);
 
-
-
-
             // return
 
             if (!check) {
