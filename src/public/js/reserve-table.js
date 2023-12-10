@@ -21,13 +21,13 @@ window.extAsyncInit = function () {
             //set psid to input
             $('#psid').val(thread_context.psid);
             handleClickButtonReserveTable();
-            $('#check-error').text('khong loi');
+            // $('#check-error').text('khong loi');
             console.log('id: ', thread_context);
         },
         function error(err) {
             // error
             console.log('Lỗi đặt bàn Eric bot', err);
-            $('#check-error').text('co loi');
+            // $('#check-error').text('co loi');
         }
     );
 
@@ -75,20 +75,38 @@ handleClickButtonReserveTable();
 function handleClickButtonReserveTable() {
     let params = new URLSearchParams(document.location.search);
     let psid = params.get('psid');
+    let idPhong = params.get('idPhong');
     // $('#check-error').text(psid);
     console.log('vao 1', psid);
     document
         .getElementById('btnReserveTable')
         .addEventListener('click', function (e) {
             console.log('vao');
+
             let check = validateInputFields(); //return true or false
+
+            let tuNgay = $('#tuNgay').val()
+            tuNgay = Date.parse(tuNgay) / 1000
+
+            let denNgay = $('#denNgay').val()
+            denNgay = Date.parse(denNgay) / 1000
 
             let data = {
                 psid: psid,
+                idPhong,
                 customerName: $('#customerName').val(),
                 email: $('#email').val(),
                 phoneNumber: $('#phoneNumber').val(),
+                tuNgay,
+                denNgay
             };
+
+            // console.log("data: ", data);
+
+
+
+
+            // return
 
             if (!check) {
                 //close webview

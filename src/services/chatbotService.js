@@ -253,6 +253,13 @@ let HandleXemPhongCN1 = (sender_psid) => {
                                         title: 'Xem chi tiết',
                                         payload: 'XEM_CN_1_PHONG_101',
                                     },
+                                    {
+                                        type: 'web_url',
+                                        title: 'ĐẶT PHÒNG',
+                                        url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}&idPhong=41b85fba-071a-4058-a030-0bb76195ec9a`,
+                                        webview_height_ratio: 'tall',
+                                        messenger_extensions: true,
+                                    },
                                 ],
                             },
                             {
@@ -266,6 +273,11 @@ let HandleXemPhongCN1 = (sender_psid) => {
                                         title: 'Xem chi tiết',
                                         payload: 'XEM_CN_1_PHONG_102',
                                     },
+                                    {
+                                        type: 'postback',
+                                        title: 'Đặt Phòng',
+                                        payload: 'DAT_PHONG_CN1_PHONG_102',
+                                    },
                                 ],
                             },
                             {
@@ -278,6 +290,11 @@ let HandleXemPhongCN1 = (sender_psid) => {
                                         type: 'postback',
                                         title: 'Xem chi tiết',
                                         payload: 'XEM_CN_1_PHONG_VIP1',
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'Đặt Phòng',
+                                        payload: 'DAT_PHONG_CN1_PHONG_VIP1',
                                     },
                                 ],
                             },

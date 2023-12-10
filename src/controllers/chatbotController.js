@@ -5,6 +5,7 @@ import chatbotService from '../services/chatbotService';
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 import moment from 'moment';
 import { JWT } from 'google-auth-library';
+const fetch = require("fetch");
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -370,6 +371,36 @@ let handlePostReserveTable = async (req, res) => {
             phoneNumber: req.body.phoneNumber,
             customerName: req.body.customerName,
         };
+
+        let dataDatPhong = {
+            idPhong: req.body.idPhong,
+            timeStart: req.body.tuNgay,
+            timeEnd: req.body.denNgay,
+            hoTen: req.body.customerName,
+            email: req.body.email,
+            sdt: req.body.phoneNumber
+        }
+
+        let res = await fetch("https://quanlykhachsan-backend.onrender.com/api/v1/dat-phong-ks-admin", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataDatPhong),
+        });
+
+        if (res?.errCode === 0) {
+
+        }
+        else {
+            let respone = {
+                text: res?.errMessage
+            }
+            await chatbotService.callSendAPI(req.body.psid, respone);
+            return
+        }
+
+
         await writeDataToGoogleSheet(data);
 
         console.log('psid: ', req.body.psid);
@@ -380,10 +411,10 @@ let handlePostReserveTable = async (req, res) => {
         } else customerName = req.body.customerName;
 
         let response1 = {
-            text: `---Thong tin khach hang dat ban---
-            \nHo va ten: ${customerName}
-            \nDia chi email: ${req.body.email}
-            \nSo dien thoai: ${req.body.phoneNumber}
+            text: `---Thông tin đặt phòng---
+            \nHọ và tên: ${customerName}
+            \nĐịa chỉ email: ${req.body.email}
+            \nSố điện thoại: ${req.body.phoneNumber}
             `,
         };
 
