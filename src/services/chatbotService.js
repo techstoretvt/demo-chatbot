@@ -318,7 +318,24 @@ let HandleXemChiTietCN1Phong101 = (sender_psid) => {
                             },
                             {
                                 title: 'anh 3',
-                                subtitle: "gia 3",
+                                subtitle:
+                                    'gia 3',
+                                image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702138753/quanlykhachsan/wnrngt3jrebrtz53aksx.jpg",
+                            },
+                            {
+                                title: 'GIO MO CUA',
+                                subtitle:
+                                    'THU 2 10AM - 11PM | THU 7 5PM - 10PM | CHU NHAT 5PM - 9PM',
+                                image_url: IMAGE_GET_STARTED,
+                                buttons: [
+                                    {
+                                        type: 'web_url',
+                                        title: 'ĐẶT BÀN',
+                                        url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}`,
+                                        webview_height_ratio: 'tall',
+                                        messenger_extensions: true,
+                                    },
+                                ],
                             },
                         ],
                     },
