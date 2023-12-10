@@ -123,6 +123,7 @@ function handleClickButtonReserveTable() {
                     `${window.location.origin}/reserve-table-ajax`
                 );
 
+                $('#btnReserveTable').text("Đang xử lý...")
                 fetch('/reserve-table-ajax', {
                     method: 'POST', // Thay đổi thành phương thức POST
                     headers: {
@@ -150,6 +151,9 @@ function handleClickButtonReserveTable() {
                         console.log(error);
                         $('#thongBao').text(error);
                     });
+
+
+                $('#btnReserveTable').text("ĐẶT BÀN")
             }
         });
 }
