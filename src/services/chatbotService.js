@@ -683,7 +683,8 @@ let getBotMediaTemplate = () => {
                     {
                         media_type: 'iamge',
                         // attachment_id: "689508926322322",
-                        url: 'https://business.facebook.com/techstoretvt/photos/326899106968659',
+                        // url: 'https://business.facebook.com/techstoretvt/photos/326899106968659',
+                        url: 'https://www.facebook.com/photo.php?fbid=326899106968659',
                         buttons: [
                             {
                                 type: 'web_url',
