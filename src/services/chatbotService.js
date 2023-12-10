@@ -326,25 +326,25 @@ let HandleXemChiTietCN1Phong101 = (sender_psid) => {
                         template_type: 'generic',
                         elements: [
                             {
-                                title: 'anh1',
-                                subtitle: 'gia',
+                                title: 'Ảnh 1',
+                                subtitle: '',
                                 image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702107825/quanlykhachsan/aptladyynhe7d77ovgbj.jpg",
                             },
                             {
-                                title: 'anh 2',
-                                subtitle: 'gia 2',
+                                title: 'Ảnh 2',
+                                subtitle: '',
                                 image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702108115/quanlykhachsan/txqculhzh9em8fjjurdj.jpg",
                             },
                             {
-                                title: 'anh 3',
-                                subtitle: 'gia 3',
+                                title: 'Ảnh 3',
+                                subtitle: '',
                                 image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702138753/quanlykhachsan/wnrngt3jrebrtz53aksx.jpg",
                             },
                             {
                                 title: 'GIO MO CUA',
                                 subtitle:
                                     'THU 2 10AM - 11PM | THU 7 5PM - 10PM | CHU NHAT 5PM - 9PM',
-                                image_url: IMAGE_GET_STARTED,
+                                image_url: 'https://quanlykhachsan.vercel.app/_next/static/media/anh-logo.f0c54b28.jpg',
                                 buttons: [
                                     {
                                         type: 'web_url',
