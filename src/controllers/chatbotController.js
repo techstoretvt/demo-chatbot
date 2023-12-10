@@ -314,13 +314,13 @@ const setupPersistentMenu = async (req, res) => {
                 call_to_actions: [
                     {
                         type: 'web_url',
-                        title: 'Youtube of TechStoreTvT',
-                        url: 'https://tranvanthoai.online/',
+                        title: 'Website of TBT Hotel',
+                        url: 'https://quanlykhachsan.vercel.app/',
                         webview_height_ratio: 'full',
                     },
                     {
                         type: 'web_url',
-                        title: 'Facebook TechStoreTvT',
+                        title: 'Facebook TBT Hotel',
                         url: 'https://www.facebook.com/tranv.thoai.7/',
                         webview_height_ratio: 'full',
                     },
