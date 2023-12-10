@@ -341,17 +341,17 @@ let HandleXemChiTietCN1Phong101 = (sender_psid) => {
                             {
                                 image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702138753/quanlykhachsan/wnrngt3jrebrtz53aksx.jpg",
                             },
-                            {
-                                buttons: [
-                                    {
-                                        type: 'web_url',
-                                        title: 'ĐẶT PHÒNG',
-                                        url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}&idPhong=41b85fba-071a-4058-a030-0bb76195ec9a`,
-                                        webview_height_ratio: 'tall',
-                                        messenger_extensions: true,
-                                    },
-                                ],
-                            },
+                            // {
+                            //     buttons: [
+                            //         {
+                            //             type: 'web_url',
+                            //             title: 'ĐẶT PHÒNG',
+                            //             url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}&idPhong=41b85fba-071a-4058-a030-0bb76195ec9a`,
+                            //             webview_height_ratio: 'tall',
+                            //             messenger_extensions: true,
+                            //         },
+                            //     ],
+                            // },
                         ],
                     },
                 },
