@@ -682,8 +682,8 @@ let getBotMediaTemplate = () => {
                 elements: [
                     {
                         media_type: 'video',
-                        attachment_id: "689508926322322",
-                        url: 'https://business.facebook.com/techstoretvt/videos/689508926322322/',
+                        // attachment_id: "689508926322322",
+                        url: 'https://business.facebook.com/techstoretvt/videos/689508926322322',
                         buttons: [
                             {
                                 type: 'postback',
