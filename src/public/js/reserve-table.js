@@ -83,6 +83,7 @@ function handleClickButtonReserveTable() {
         .addEventListener('click', function (e) {
             console.log('vao');
 
+
             let check = validateInputFields(); //return true or false
 
             let tuNgay = $('#tuNgay').val()
@@ -145,15 +146,17 @@ function handleClickButtonReserveTable() {
                             $('#thongBao').text(data.message);
                             // console.log(data.message);
                         }
+                        $('#btnReserveTable').text("ĐẶT BÀN")
                     })
                     .catch((error) => {
                         // Xử lý lỗi khi gọi API không thành công
                         console.log(error);
                         $('#thongBao').text(error);
+                        $('#btnReserveTable').text("ĐẶT BÀN")
                     });
 
 
-                $('#btnReserveTable').text("ĐẶT BÀN")
+                // $('#btnReserveTable').text("ĐẶT BÀN")
             }
         });
 }
