@@ -139,8 +139,16 @@ async function handleMessage(sender_psid, received_message) {
     }
     if (received_message.text) {
         // Create the payload for a basic text message
-        if (received_message.text === 'Mở menu') {
+        if (received_message.text.toLowerCase() === 'mở menu' || received_message.text.toLowerCase() === 'menu') {
             chatbotService.handleSendMainMenu(sender_psid);
+            return;
+        }
+        else if (received_message.text.toLowerCase() === 'reset') {
+            chatbotService.handleGetStarted(sender_psid);
+            return;
+        }
+        else if (received_message.text.toLowerCase() === 'tbt hotel - cần thơ' || received_message.text.toLowerCase() === 'cần thơ') {
+            chatbotService.HandleXemPhongCN1(sender_psid);
             return;
         }
         response = {
