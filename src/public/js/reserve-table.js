@@ -135,10 +135,16 @@ function handleClickButtonReserveTable() {
                     .then((data) => {
                         // Xử lý dữ liệu khi API trả về thành công
                         console.log(data);
+                        if (data.message === 'ok')
+                            $('#thongBao').text("Đặt phòng thành công");
+                        else {
+                            $('#thongBao').text(data.message);
+                        }
                     })
                     .catch((error) => {
                         // Xử lý lỗi khi gọi API không thành công
                         console.log(error);
+                        $('#thongBao').text(error);
                     });
             }
         });

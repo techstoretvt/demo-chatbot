@@ -397,7 +397,9 @@ let handlePostReserveTable = async (req, res) => {
             }
             console.log("dat phong fail: ", res?.errMessage);
             await chatbotService.callSendAPI(req.body.psid, respone);
-            return
+            return res.status(200).json({
+                message: res?.errMessage,
+            });
         }
 
 
