@@ -714,13 +714,50 @@ let handleGuideToUseBot = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let username = await getUserName(sender_psid);
-            let response1 = {
-                text: `Xin chào ${username}, mình là chatbot TBT HoTel.\nĐể biết thêm thông tin, vui lòng xem video bên dưới 😊💕.`,
-            };
-            let response2 = getBotMediaTemplate(sender_psid);
+            // let response1 = {
+            //     text: `Xin chào ${username}, mình là chatbot TBT HoTel.\nĐể biết thêm thông tin, vui lòng xem video bên dưới 😊💕.`,
+            // };
 
-            await callSendAPI(sender_psid, response1);
+
+            let response2 = {
+                attachment: {
+                    type: 'template',
+                    payload: {
+                        template_type: 'generic',
+                        elements: [
+                            {
+                                title: 'Xin chào ${username}',
+                                subtitle:
+                                    'Mình là chatbot TBT HoTel. Để biết thêm thông tin, vui lòng xem video bên dưới 😊💕',
+                                image_url: IMAGE_GET_STARTED,
+                                buttons: [
+                                    {
+                                        type: 'web_url',
+                                        title: 'Xem video hướng dẫn',
+                                        url: `https://quanlykhachsan.vercel.app/`,
+                                    },
+                                    {
+                                        type: 'web_url',
+                                        title: 'Ghé thăm Khách sạn',
+                                        url: `https://quanlykhachsan.vercel.app/`,
+                                    },
+                                    {
+                                        type: 'postback',
+                                        title: 'MENU CHI NHÁNH',
+                                        payload: 'MAIN_MENU',
+                                    },
+                                ],
+                            }
+                        ]
+                    },
+                },
+            };
+
+            // let response3 = getBotMediaTemplate(sender_psid);
+
+            // await callSendAPI(sender_psid, response1);
             await callSendAPI(sender_psid, response2);
+            // await callSendAPI(sender_psid, response3);
 
             resolve('done');
         } catch (error) {
