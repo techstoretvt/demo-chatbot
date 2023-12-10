@@ -386,6 +386,7 @@ let handlePostReserveTable = async (req, res) => {
         }
 
         let res = await axios.post("https://quanlykhachsan-backend.onrender.com/api/v1/dat-phong-ks-loai1-user", dataDatPhong)
+        res = res.data
 
         if (res?.errCode === 0) {
             console.log('dat phong success');
