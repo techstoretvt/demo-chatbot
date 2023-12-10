@@ -233,6 +233,96 @@ let handleSendMainMenu = (sender_psid) => {
     });
 };
 
+let HandleXemPhongCN1 = (sender_psid) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let response1 = {
+                attachment: {
+                    type: 'template',
+                    payload: {
+                        template_type: 'generic',
+                        elements: [
+                            {
+                                title: 'Phòng 101',
+                                subtitle:
+                                    'Phòng có ban công, tầm nhìn đẹp, cửa sổ thoáng mát.',
+                                image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702107825/quanlykhachsan/aptladyynhe7d77ovgbj.jpg",
+                                buttons: [
+                                    {
+                                        type: 'postback',
+                                        title: 'Xem chi tiết',
+                                        payload: 'XEM_CN_1_PHONG_101',
+                                    },
+                                ],
+                            },
+                            {
+                                title: 'Phòng 102',
+                                subtitle:
+                                    'Phòng có tầm nhìn ra hồ bơi của khách sạn. Cửa sooe kính rộng, thoáng mát bao quát toàn cảnh thành phố mang đến một không gian thanh bình và dễ chịu.',
+                                image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702108115/quanlykhachsan/txqculhzh9em8fjjurdj.jpg",
+                                buttons: [
+                                    {
+                                        type: 'postback',
+                                        title: 'Xem chi tiết',
+                                        payload: 'XEM_CN_1_PHONG_102',
+                                    },
+                                ],
+                            },
+                            {
+                                title: 'Phòng VIP1',
+                                subtitle:
+                                    'Phòng có diện tích rộng rãi, thoáng mát, hệ thống cửa kính mang tầm nhìn bao quát, có thể nhìn về phía Bến Ninh Kiều một cách bao quát.',
+                                image_url: "https://res.cloudinary.com/dultkpqjp/image/upload/v1702138753/quanlykhachsan/wnrngt3jrebrtz53aksx.jpg",
+                                buttons: [
+                                    {
+                                        type: 'postback',
+                                        title: 'Xem chi tiết',
+                                        payload: 'XEM_CN_1_PHONG_VIP1',
+                                    },
+                                ],
+                            },
+                            // {
+                            //     title: 'GIO MO CUA',
+                            //     subtitle:
+                            //         'THU 2 10AM - 11PM | THU 7 5PM - 10PM | CHU NHAT 5PM - 9PM',
+                            //     image_url: IMAGE_GET_STARTED,
+                            //     buttons: [
+                            //         {
+                            //             type: 'web_url',
+                            //             title: 'ĐẶT BÀN',
+                            //             url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}`,
+                            //             webview_height_ratio: 'tall',
+                            //             messenger_extensions: true,
+                            //         },
+                            //     ],
+                            // },
+                            // {
+                            //     title: 'KHONG GIAN NHA HANG',
+                            //     subtitle:
+                            //         'Nha hang co suc chua len den 300 khach ngoi va phuc vu cac bua tiec to',
+                            //     image_url: IMAGE_GET_STARTED,
+                            //     buttons: [
+                            //         {
+                            //             type: 'postback',
+                            //             title: 'CHI TIET',
+                            //             payload: 'SHOW_ROOM',
+                            //         },
+                            //     ],
+                            // },
+                        ],
+                    },
+                },
+            };
+
+            await callSendAPI(sender_psid, response1);
+
+            resolve('done');
+        } catch (error) {
+            reject(error);
+        }
+    });
+};
+
 const getMainMenuTemplate = (psid) => {
     let response = {
         attachment: {
@@ -241,51 +331,72 @@ const getMainMenuTemplate = (psid) => {
                 template_type: 'generic',
                 elements: [
                     {
-                        title: 'Menu cua nha hang',
+                        title: 'TBT Hotel - Cần Thơ',
                         subtitle:
-                            'Chung toi rat han hanh mang den cho banj thuc don phong phu cho bua sang va bua toi',
-                        image_url: IMAGE_GET_STARTED,
+                            'Mô tả chi nhánh khách sạn, giới thiệu sơ thông tin chi nhánh và các đặc điểm riêng biệt.',
+                        image_url: "https://techstoretvt.github.io/kho-anh/cn1.jpg",
                         buttons: [
                             {
                                 type: 'postback',
-                                title: 'BUA TRUA',
-                                payload: 'LUNCH_MENU',
-                            },
-                            {
-                                type: 'postback',
-                                title: 'BUA TOI',
-                                payload: 'DINNER_MENU',
+                                title: 'Xem phòng',
+                                payload: 'XEM_PHONG_CN_1',
                             },
                         ],
                     },
                     {
-                        title: 'GIO MO CUA',
+                        title: 'TBT Hotel - Ngọc Lan',
                         subtitle:
-                            'THU 2 10AM - 11PM | THU 7 5PM - 10PM | CHU NHAT 5PM - 9PM',
-                        image_url: IMAGE_GET_STARTED,
+                            'Mô tả chi nhánh khách sạn, giới thiệu sơ thông tin chi nhánh và các đặc điểm riêng biệt.',
+                        image_url: "https://techstoretvt.github.io/kho-anh/cn2.jpg",
                         buttons: [
                             {
-                                type: 'web_url',
-                                title: 'ĐẶT BÀN',
-                                url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}`,
-                                webview_height_ratio: 'tall',
-                                messenger_extensions: true,
+                                type: 'postback',
+                                title: 'Xem phòng',
+                                payload: 'XEM_PHONG_CN_2',
                             },
                         ],
                     },
                     {
-                        title: 'KHONG GIAN NHA HANG',
+                        title: 'TBT Hotel - Đà Lạt',
                         subtitle:
-                            'Nha hang co suc chua len den 300 khach ngoi va phuc vu cac bua tiec to',
-                        image_url: IMAGE_GET_STARTED,
+                            'Mô tả chi nhánh khách sạn, giới thiệu sơ thông tin chi nhánh và các đặc điểm riêng biệt.',
+                        image_url: "https://techstoretvt.github.io/kho-anh/cn3.jpg",
                         buttons: [
                             {
                                 type: 'postback',
-                                title: 'CHI TIET',
-                                payload: 'SHOW_ROOM',
+                                title: 'Xem phòng',
+                                payload: 'XEM_PHONG_CN_3',
                             },
                         ],
                     },
+                    // {
+                    //     title: 'GIO MO CUA',
+                    //     subtitle:
+                    //         'THU 2 10AM - 11PM | THU 7 5PM - 10PM | CHU NHAT 5PM - 9PM',
+                    //     image_url: IMAGE_GET_STARTED,
+                    //     buttons: [
+                    //         {
+                    //             type: 'web_url',
+                    //             title: 'ĐẶT BÀN',
+                    //             url: `https://demo-chatbot-9rjf.onrender.com/reserve-table?psid=${psid}`,
+                    //             webview_height_ratio: 'tall',
+                    //             messenger_extensions: true,
+                    //         },
+                    //     ],
+                    // },
+                    // {
+                    //     title: 'KHONG GIAN NHA HANG',
+                    //     subtitle:
+                    //         'Nha hang co suc chua len den 300 khach ngoi va phuc vu cac bua tiec to',
+                    //     image_url: IMAGE_GET_STARTED,
+                    //     buttons: [
+                    //         {
+                    //             type: 'postback',
+                    //             title: 'CHI TIET',
+                    //             payload: 'SHOW_ROOM',
+                    //         },
+                    //     ],
+                    // },
                 ],
             },
         },
@@ -726,7 +837,7 @@ let handleGuideToUseBot = (sender_psid) => {
                         template_type: 'generic',
                         elements: [
                             {
-                                title: 'Xin chào ${username}',
+                                title: `Xin chào ${username}`,
                                 subtitle:
                                     'Mình là chatbot TBT HoTel. Để biết thêm thông tin, vui lòng xem video bên dưới 😊💕',
                                 image_url: IMAGE_GET_STARTED,
@@ -734,7 +845,7 @@ let handleGuideToUseBot = (sender_psid) => {
                                     {
                                         type: 'web_url',
                                         title: 'Xem video hướng dẫn',
-                                        url: `https://quanlykhachsan.vercel.app/`,
+                                        url: `https://www.youtube.com/watch?v=ZJbyf1fBY_4&ab_channel=EmSuy`,
                                     },
                                     {
                                         type: 'web_url',
@@ -778,4 +889,5 @@ module.exports = {
     callSendAPI,
     getUserName,
     handleGuideToUseBot,
+    HandleXemPhongCN1
 };

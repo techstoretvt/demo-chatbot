@@ -228,6 +228,9 @@ async function handlePostback(sender_psid, received_postback) {
         case 'SHOW_ROOM':
             await chatbotService.handleShowDetailRooms(sender_psid);
             break;
+        case 'XEM_PHONG_CN_1':
+            await chatbotService.HandleXemPhongCN1(sender_psid);
+            break;
         // case 'RESERVER_TABLE':
         //     await chatbotService.handleShowDetailRooms(sender_psid);
         //     break;
