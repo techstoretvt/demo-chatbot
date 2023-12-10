@@ -141,7 +141,7 @@ function handleClickButtonReserveTable() {
 
                         }
                         else {
-                            $('#thongBao').text("Đặt phòng that bai");
+                            $('#thongBao').text(data.message);
                             // console.log(data.message);
                         }
                     })
