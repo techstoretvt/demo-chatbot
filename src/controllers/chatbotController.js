@@ -5,7 +5,7 @@ import chatbotService from '../services/chatbotService';
 const { GoogleSpreadsheet } = require('google-spreadsheet');
 import moment from 'moment';
 import { JWT } from 'google-auth-library';
-const fetch = require("fetch");
+// const fetch = require("fetch");
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
@@ -373,7 +373,7 @@ let handlePostReserveTable = async (req, res) => {
         };
 
         let dataDatPhong = {
-            idPhong: req.body.idPhong,
+            idPhong: [req.body.idPhong],
             timeStart: req.body.tuNgay,
             timeEnd: req.body.denNgay,
             hoTen: req.body.customerName,
@@ -381,13 +381,7 @@ let handlePostReserveTable = async (req, res) => {
             sdt: req.body.phoneNumber
         }
 
-        let res = await fetch("https://quanlykhachsan-backend.onrender.com/api/v1/dat-phong-ks-admin", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(dataDatPhong),
-        });
+        let res = await axios.post("https://quanlykhachsan-backend.onrender.com/api/v1/dat-phong-ks-loai1-user", dataDatPhong)
 
         if (res?.errCode === 0) {
 
