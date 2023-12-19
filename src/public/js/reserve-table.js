@@ -146,13 +146,13 @@ function handleClickButtonReserveTable() {
                             $('#thongBao').text(data.message);
                             // console.log(data.message);
                         }
-                        $('#btnReserveTable').text("ĐẶT BÀN")
+                        $('#btnReserveTable').text("ĐẶT PHÒNG")
                     })
                     .catch((error) => {
                         // Xử lý lỗi khi gọi API không thành công
                         console.log(error);
                         $('#thongBao').text(error);
-                        $('#btnReserveTable').text("ĐẶT BÀN")
+                        $('#btnReserveTable').text("ĐẶT PHÒNG")
                     });
 
 
