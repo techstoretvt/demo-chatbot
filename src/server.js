@@ -3,7 +3,7 @@ import viewEngine from './config/ViewEngine'
 import initWebRoutes from './routes/web'
 import bodyParser from 'body-parser';
 require('dotenv').config();
-const job = require('./cron.js')
+const job = require('../cron.js')
 
 // if (process.env.LINK_BACKEND !== "http://localhost:4000")
 job.start();
