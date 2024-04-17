@@ -1,7 +1,7 @@
 // Cron job to hit endpoint every 14 sec to keep backend alive always
 const cron = require('cron');
 const https = require('https');
-const backendUrl = "https://demo-chatbot-9rjf.onrender.com";
+const backendUrl = "https://demo-chatbot-89y4.onrender.com";
 
 const job = new cron.CronJob('*/13 * * * *', function () {
     // This function will be executed every 14 minutes.
